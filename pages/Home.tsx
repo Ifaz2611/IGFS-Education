@@ -212,7 +212,7 @@ const Home: React.FC = () => {
             {/* Services Section */}
             <section className="py-20 bg-white dark:bg-gray-900" aria-label="Services">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Our Services</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100 mb-6">Our Services</h2>
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                         We offer end-to-end support to make your study abroad dream a reality.
                     </p>
@@ -222,16 +222,72 @@ const Home: React.FC = () => {
                         viewport={{ once: true, amount: 0.2 }}
                         variants={staggerContainer}
                         className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {['University Shortlisting', 'Application Assistance', 'Visa Guidance', 'Pre-Departure Support'].map((service) => (
-                            <ServiceCard key={service} service={service} />
+                        {[
+                            {
+                                title: 'University Shortlisting',
+                                description: 'Personalized university matching, course selection advice, profile evaluation',
+                                img: '/images/services/university-shortlisting.png',
+                                icon: '🎓'
+                            },
+                            {
+                                title: 'Application Assistance',
+                                description: 'Personalized university matching, course selection advice, profile evaluation',
+                                img: '/images/services/application-assistance.png',
+                                icon: '📝'
+                            },
+                            {
+                                title: 'Visa Guidance',
+                                description: 'Personalized university matching, course selection advice, profile evaluation',
+                                img: '/images/services/visa-guidance.png',
+                                icon: '🛂'
+                            },
+                            {
+                                title: 'Pre-Departure Support',
+                                description: 'Personalized university matching, course selection advice, profile evaluation',
+                                img: '/images/services/pre-departure-support.png',
+                                icon: '✈️'
+                            }
+                        ].map((service, index) => (
+                            <motion.div
+                                key={service.title}
+                                variants={fadeInUp}
+                                whileHover={{ y: -8, boxShadow: '0 10px 20px rgba(31, 70, 97, 0.2)' }}
+                                className="bg-brand-light dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group"
+                            >
+                                {/* Service Icon */}
+                                <div className="flex justify-center mb-4">
+                                    <div className="w-12 h-12 rounded-full bg-brand-secondary text-brand-primary flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-300">
+                                        {service.icon}
+                                    </div>
+                                </div>
+                                
+                                {/* Service Image */}
+                                <div className="mb-4 relative overflow-hidden rounded-lg">
+                                    <img 
+                                        src={service.img} 
+                                        alt={service.title} 
+                                        className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                
+                                {/* Service Title */}
+                                <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-3 text-center">
+                                    {service.title}
+                                </h3>
+                                
+                                {/* Service Description */}
+                                <ul className="text-gray-600 dark:text-gray-400 text-left space-y-2">
+                                    {service.description.split(', ').map((item, itemIndex) => (
+                                        <li key={itemIndex} className="flex items-start">
+                                            <span className="text-green-500 mr-2 mt-1">✓</span>
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
                         ))}
                     </motion.div>
-                    <MotionLink 
-                        to="/services" 
-                        className="mt-12 inline-flex items-center bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition duration-300"
-                        aria-label="Learn more about our services">
-                        Learn More About Our Services <ArrowRightIcon className="ml-2 h-5 w-5" />
-                    </MotionLink>
                 </div>
             </section>
             
