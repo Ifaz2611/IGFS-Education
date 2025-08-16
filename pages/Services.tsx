@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
 import { CheckCircleIcon } from '@heroicons/react/24/solid'; // fixed import
 
+
 type CaseStudy = {
     name: string;
     story: string;
