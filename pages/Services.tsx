@@ -1,16 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
-import { CheckCircleIcon } from '../components/icons';
+import { CheckCircleIcon } from '@heroicons/react/24/solid'; // fixed import
 
-const ServiceCard = ({ title, description, benefits, caseStudy, image, reverse = false }: { 
-    title: string, 
-    description: string, 
-    benefits: string[], 
-    caseStudy: { name: string, story: string }, 
-    image: string, 
-    reverse?: boolean 
-}) => {
+type CaseStudy = {
+    name: string;
+    story: string;
+};
+
+type ServiceCardProps = {
+    title: string;
+    description: string;
+    benefits: string[];
+    caseStudy: CaseStudy;
+    image: string;
+    reverse?: boolean;
+};
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, benefits, caseStudy, image, reverse = false }) => {
     const slideInVariant: Variants = {
         hidden: { opacity: 0, x: reverse ? 50 : -50 },
         visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } }
@@ -57,7 +64,7 @@ const ServiceCard = ({ title, description, benefits, caseStudy, image, reverse =
 };
 
 const Services: React.FC = () => {
-    const services = [
+    const services: ServiceCardProps[] = [
         {
             title: "University & Course Selection",
             description: "Choosing the right university and course is the most critical decision. Our counselors use a data-driven approach, combined with your academic profile, interests, and career goals, to create a tailored list of best-fit institutions.",
@@ -128,7 +135,6 @@ const Services: React.FC = () => {
                     playsInline
                     className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 />
-                {/* <div className="absolute top-0 left-0 w-full h-full bg-brand-primary/70 z-10"></div> */}    
             </header>
 
             {/* Services Section */}
