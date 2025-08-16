@@ -117,30 +117,18 @@ const Services: React.FC = () => {
     ];
 
     return (
-        <div className="bg-white dark:bg-gray-900 overflow-x-hidden">
-            {/* Page Header */}
-            <header className="relative flex items-center justify-center h-screen text-center text-white overflow-hidden">
+        <div className="bg-brand-light dark:bg-gray-900 overflow-x-hidden">
+            {/* Video-only header section */}
+            <header className="relative flex items-center justify-center h-screen overflow-hidden">
                 <video 
-                    src="https://cdn.pixabay.com/video/2024/04/23/209673-937223363_large.mp4" 
+                    src="/videos/service-hero.mp4" 
                     autoPlay 
                     loop 
                     muted 
                     playsInline
                     className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 />
-                <div className="absolute top-0 left-0 w-full h-full bg-brand-primary/70 z-10"></div>
-                <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="text-4xl md:text-5xl font-extrabold">Our Comprehensive Services</motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="mt-4 text-lg text-gray-200 max-w-3xl mx-auto">From your first thought of studying abroad to your first day on campus, we're with you at every step.</motion.p>
-                </div>
+                {/* <div className="absolute top-0 left-0 w-full h-full bg-brand-primary/70 z-10"></div> */}    
             </header>
 
             {/* Services Section */}

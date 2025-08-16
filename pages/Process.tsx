@@ -13,8 +13,7 @@ const Process: React.FC = () => {
                 "Psychometric tests to identify your strengths.",
                 "Brainstorming career and course options.",
                 "Setting realistic goals and expectations."
-            ],
-            icon: "🔍"
+            ]
         },
         {
             step: 2,
@@ -25,8 +24,7 @@ const Process: React.FC = () => {
                 "Researching program curricula and faculty.",
                 "Considering location, campus culture, and cost.",
                 "Finalizing a balanced list of 5-8 universities."
-            ],
-            icon: "🎓"
+            ]
         },
         {
             step: 3,
@@ -37,8 +35,7 @@ const Process: React.FC = () => {
                 "LOR guidance and review.",
                 "Meticulous application form filling.",
                 "Tracking application status and following up."
-            ],
-            icon: "📝"
+            ]
         },
         {
             step: 4,
@@ -49,86 +46,117 @@ const Process: React.FC = () => {
                 "Guidance on financial proof and education loans.",
                 "Intensive mock visa interview sessions.",
                 "Briefings on accommodation, travel, and cultural norms."
-            ],
-            icon: "✈️"
+            ]
         }
     ];
 
+    // Animations
+    const listContainer: Variants = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.15 } }
+    };
+
+    const listItem: Variants = {
+        hidden: { opacity: 0, x: -10 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
+    };
+
     return (
-        <div className="bg-white dark:bg-gray-900 overflow-x-hidden">
-            <header className="relative flex items-center justify-center h-screen text-center text-white overflow-hidden">
+        <div className="bg-brand-light dark:bg-gray-900 overflow-x-hidden">
+            {/* Video-only header section */}
+            <header className="relative flex items-center justify-center h-screen overflow-hidden">
                 <video 
-                    src="https://cdn.pixabay.com/video/2024/04/23/209673-937223363_large.mp4" 
+                    src="/videos/Prosses-hero.mp4" 
                     autoPlay 
                     loop 
                     muted 
                     playsInline
                     className="absolute top-0 left-0 w-full h-full object-cover z-0"
                 />
-                <div className="absolute top-0 left-0 w-full h-full bg-brand-primary/70 z-10"></div>
-                <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.h1
-                         initial={{ opacity: 0, y: 20 }}
-                         animate={{ opacity: 1, y: 0 }}
-                         transition={{ duration: 0.5 }}
-                         className="text-4xl md:text-5xl font-extrabold">Our Proven Path to Success</motion.h1>
-                    <motion.p
-                         initial={{ opacity: 0, y: 20 }}
-                         animate={{ opacity: 1, y: 0 }}
-                         transition={{ duration: 0.5, delay: 0.2 }}
-                         className="mt-4 text-lg text-gray-200 max-w-3xl mx-auto">We've refined our process over a decade to make your study abroad journey seamless, transparent, and successful.</motion.p>
-                </div>
             </header>
 
-            <section className="py-20">
+            <section className="py-20 relative">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="relative max-w-4xl mx-auto">
-                        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-brand-light dark:bg-gray-700 hidden md:block" aria-hidden="true"></div>
+                        
+                        {/* ✅ Visible dashed timeline line */}
+                        <div 
+                            className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 border-l-2 border-dashed border-gray-300 dark:border-gray-600" 
+                            aria-hidden="true"
+                        ></div>
+
                         {steps.map((item, index) => {
-                             const side = index % 2 === 0 ? 1 : -1;
-                             const contentVariant: Variants = {
-                                 hidden: { opacity: 0, x: -50 * side },
-                                 visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-                             };
-                             const iconVariant: Variants = {
+                            // ✅ Correct side calculation
+                            const side = index % 2 === 0 ? -1 : 1;
+
+                            const contentVariant: Variants = {
+                                hidden: { opacity: 0, x: 50 * side },
+                                visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+                            };
+
+                            const iconVariant: Variants = {
                                 hidden: { scale: 0 },
                                 visible: { scale: 1, transition: { type: 'spring', stiffness: 300, damping: 20, delay: 0.2 } }
                             };
 
                             return (
-                            <motion.div
-                                key={item.step}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, amount: 0.5 }}
-                                className={`mb-12 flex md:items-center w-full ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                                <div className="hidden md:block w-1/2"></div>
-                                <div className="hidden md:block relative">
-                                    <motion.div
-                                        variants={iconVariant}
-                                        className="h-16 w-16 rounded-full bg-brand-secondary text-brand-primary text-3xl flex items-center justify-center font-bold z-10 relative">
-                                        {item.step}
-                                    </motion.div>
-                                </div>
-                                <motion.div variants={contentVariant} className="w-full md:w-1/2 bg-brand-light dark:bg-gray-800 p-8 rounded-lg shadow-md md:shadow-lg">
-                                    <div className="flex items-center md:hidden mb-4">
-                                        <div className="h-12 w-12 rounded-full bg-brand-secondary text-brand-primary text-2xl flex items-center justify-center font-bold mr-4">{item.step}</div>
-                                        <h2 className="text-2xl font-bold text-brand-primary dark:text-gray-100">{item.title}</h2>
+                                <motion.div
+                                    key={item.step}
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true, amount: 0.5 }}
+                                    className={`mb-12 flex md:items-center w-full ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                                    
+                                    {/* Empty half for spacing on larger screens */}
+                                    <div className="hidden md:block w-1/2"></div>
+                                    
+                                    {/* Step number circle */}
+                                    <div className="hidden md:block relative">
+                                        <motion.div
+                                            variants={iconVariant}
+                                            className="h-16 w-16 rounded-full bg-brand-secondary text-brand-primary text-3xl flex items-center justify-center font-bold z-10 relative">
+                                            {item.step}
+                                        </motion.div>
                                     </div>
-                                    <h2 className="hidden md:block text-2xl font-bold text-brand-primary dark:text-gray-100 mb-3">{item.title}</h2>
-                                    <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
-                                    <ul className="mt-4 space-y-2 text-sm text-gray-700 dark:text-gray-400">
-                                        {item.details.map(detail => (
-                                            <li key={detail} className="flex"><span className="text-green-500 mr-2">✓</span>{detail}</li>
-                                        ))}
-                                    </ul>
+
+                                    {/* Content */}
+                                    <motion.div variants={contentVariant} className="w-full md:w-1/2 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md md:shadow-lg">
+                                        {/* Mobile circle + title */}
+                                        <div className="flex items-center md:hidden mb-4">
+                                            <div className="h-12 w-12 rounded-full bg-brand-secondary text-brand-primary text-2xl flex items-center justify-center font-bold mr-4">{item.step}</div>
+                                            <h2 className="text-2xl font-bold text-brand-primary dark:text-gray-100">{item.title}</h2>
+                                        </div>
+
+                                        <h2 className="hidden md:block text-2xl font-bold text-brand-primary dark:text-gray-100 mb-3">{item.title}</h2>
+                                        <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+
+                                        {/* Details list animation */}
+                                        <motion.ul
+                                            variants={listContainer}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            viewport={{ once: true }}
+                                            className="mt-4 space-y-2 text-sm text-gray-700 dark:text-gray-400"
+                                        >
+                                            {item.details.map(detail => (
+                                                <motion.li 
+                                                    key={detail} 
+                                                    variants={listItem}
+                                                    className="flex"
+                                                >
+                                                    <span className="text-green-500 mr-2">✓</span>{detail}
+                                                </motion.li>
+                                            ))}
+                                        </motion.ul>
+                                    </motion.div>
                                 </motion.div>
-                            </motion.div>
-                        )})}
+                            )
+                        })}
                     </div>
                 </div>
             </section>
             
+            {/* Call to Action */}
             <section className="bg-gradient-to-r from-brand-primary to-brand-secondary py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.div
