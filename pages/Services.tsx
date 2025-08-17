@@ -127,14 +127,14 @@ const Services: React.FC = () => {
     return (
         <div className="bg-brand-light dark:bg-gray-900 overflow-x-hidden">
             {/* Video-only header section */}
-            <header className="relative flex items-center justify-center h-screen overflow-hidden">
+            <header className="relative flex items-center justify-center w-full aspect-video overflow-hidden">
                 <video 
                     src="/videos/service-hero.mp4" 
                     autoPlay 
                     loop 
                     muted 
                     playsInline
-                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                    className="absolute top-0 left-0 w-full h-full object-contain z-0"
                 />
             </header>
 

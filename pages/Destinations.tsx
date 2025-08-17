@@ -603,7 +603,7 @@ const Destinations: React.FC = () => {
 
     return (
         <div className="bg-white dark:bg-gray-900">
-            <header className="relative flex items-center justify-center h-screen text-center text-white overflow-hidden">
+            <header className="relative flex items-center justify-center w-full aspect-video overflow-hidden">
                 {/* Dynamic video based on active tab */}
                 <video 
                     src={videoUrls[activeTab]} 
@@ -611,7 +611,7 @@ const Destinations: React.FC = () => {
                     loop 
                     muted 
                     playsInline
-                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                    className="absolute top-0 left-0 w-full h-full object-contain z-0"
                 />
                 {/* <div className="absolute top-0 left-0 w-full h-full bg-brand-primary/70 z-10"></div> */}
                 {/* <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
