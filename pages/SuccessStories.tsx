@@ -8,36 +8,44 @@ const SuccessStories: React.FC = () => {
             destination: 'University of California, USA',
             program: 'MS in Computer Science',
             quote: "My dream of studying at a top US university felt overwhelming until I found IGFS. Their counselors meticulously planned every step, from shortlisting universities that matched my profile to preparing me for the visa interview. The editors transformed my SOP from a simple document into a compelling story. I couldn't be more grateful for their unwavering support.",
-            img: 'https://picsum.photos/id/1027/150/150'
+            img: 'https://picsum.photos/id/1027/150/150  '
         },
         {
             name: 'Jin-Woo Park',
             destination: 'KAIST, South Korea',
             program: 'B.Eng in Electrical Engineering',
             quote: "As a high school student, I had no idea how to navigate the Korean university application system. The IGFS team, with their deep knowledge of Korean education, was a lifesaver. They helped me highlight my strengths and secure a scholarship at my top-choice university, KAIST. They truly care about their students' success.",
-            img: 'https://picsum.photos/id/1005/150/150'
+            img: 'https://picsum.photos/id/1005/150/150  '
         },
         {
             name: 'Marco Rossi',
             destination: 'Politecnico di Milano, Italy',
             program: 'Masters in Fashion Design',
             quote: "IGFS understood the nuances of applying to a top design school in Italy. They didn't just help with paperwork; they provided critical feedback on my portfolio, which made all the difference. Their guidance on the complex Italian visa process was clear and precise. Grazie mille, IGFS!",
-            img: 'https://picsum.photos/id/1011/150/150'
+            img: 'https://picsum.photos/id/1011/150/150  '
         },
         {
             name: 'Aisha Al-Jamil',
             destination: 'University of Toronto, Canada',
             program: 'B.Com in Finance',
             quote: "The entire IGFS team was professional, patient, and incredibly knowledgeable. They helped me find the perfect commerce program and guided me in securing a study permit for Canada. The pre-departure session was fantastic, providing practical tips that made my transition to a new country so much smoother.",
-            img: 'https://picsum.photos/id/1013/150/150'
+            img: 'https://picsum.photos/id/1013/150/150  '
         },
         {
             name: 'Ken Obinna',
             destination: 'University of Melbourne, Australia',
             program: 'PhD in Public Health',
             quote: "Applying for a PhD program is a unique challenge. IGFS connected me with a mentor who helped me refine my research proposal and contact potential supervisors. This specialized guidance was invaluable and directly led to my admission with a full scholarship. I highly recommend them for postgraduate applicants.",
-            img: 'https://picsum.photos/id/1014/150/150'
+            img: 'https://picsum.photos/id/1014/150/150  '
         },
+        {
+            name: 'Liam Chen',
+            destination: 'National University of Singapore, Singapore',
+            program: 'MBA',
+            quote: "IGFS gave me clarity in my MBA application journey. From GMAT prep guidance to essay editing and interview coaching, they were with me every step of the way. I'm now proud to be part of NUS's prestigious business school.",
+            img: 'https://picsum.photos/id/1028/150/150'
+        },
+        // You can Add more success story but make sure when you put in here you use "," this thing 
     ];
 
     return (
