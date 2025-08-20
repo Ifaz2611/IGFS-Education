@@ -8,6 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SettingsPanel from './components/SettingsPanel';
 import AIAssistBot from './components/AIAssistBot';
 import NewsTicker from './components/NewsTicker';
+import MouseTrail from "./components/MouseTrail";
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -19,6 +20,8 @@ import Blog from './pages/Blog';
 import SingleBlogPage from './pages/SingleBlogPage';
 import Contact from './pages/Contact';
 import { useAppContext } from './contexts/AppContext';
+
+
 
 const App: React.FC = () => {
   const { theme } = useAppContext();
@@ -47,6 +50,7 @@ const App: React.FC = () => {
           <WhatsAppButton />
           <SettingsPanel />
           <AIAssistBot />
+          <MouseTrail />
         </div>
       </div>
     </HashRouter>
