@@ -17,22 +17,20 @@ const AIAssistBot: React.FC = () => {
   const chatInstance = useRef<Chat | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showQuickReplies, setShowQuickReplies] = useState(false);
-  const [showBadge, setShowBadge] = useState(true); // Control red dot
+  const [showBadge, setShowBadge] = useState(true);
 
   const quickReplies = ["Looking for Study Abroad", "IELTS", "Event / Fair Information"];
 
   useEffect(() => {
     if (isOpen && !chatInstance.current) {
       try {
-        if (!process.env.API_KEY) {
-          throw new Error("API_KEY is not set.");
-        }
+        if (!process.env.API_KEY) throw new Error("API_KEY is not set.");
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         chatInstance.current = ai.chats.create({
           model: 'gemini-2.5-flash',
           config: {
             systemInstruction:
-              "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'. Your goal is to answer questions about studying abroad, the services IGFS offers, destinations like the USA, South Korea, and Italy, and the application process. Keep your answers helpful and relatively concise. Do not reveal you are a language model. Start the conversation with a friendly greeting and ask what the user needs help with, for example 'Hi! What brings you to IGFS today?'.",
+              "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'. Your goal is to answer questions about studying abroad, the services IGFS offers, destinations like the USA, South Korea, and Italy, and the application process. Keep your answers helpful and relatively concise. Do not reveal you are a language model. Start the conversation with a friendly greeting and ask what the user needs help with.",
           },
         });
         setError(null);
@@ -51,7 +49,6 @@ const AIAssistBot: React.FC = () => {
             message: "Hello, please introduce yourself and greet me.",
           });
           let botResponse = '';
-
           for await (const chunk of response) {
             botResponse += chunk.text;
             setMessages([{ sender: 'bot', text: botResponse }]);
@@ -67,11 +64,7 @@ const AIAssistBot: React.FC = () => {
         }
       };
 
-      if (messages.length === 0) {
-        startConversation();
-      }
-
-      // Hide badge after opening for the first time
+      if (messages.length === 0) startConversation();
       if (showBadge) setShowBadge(false);
     }
   }, [isOpen, showBadge, messages.length]);
@@ -82,7 +75,6 @@ const AIAssistBot: React.FC = () => {
 
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim() || isLoading || !chatInstance.current) return;
-
     setShowQuickReplies(false);
     const userMessage: Message = { sender: 'user', text: messageText };
     setMessages((prev) => [...prev, userMessage, { sender: 'bot', text: '' }]);
@@ -91,7 +83,6 @@ const AIAssistBot: React.FC = () => {
     try {
       const stream = await chatInstance.current.sendMessageStream({ message: messageText });
       let botResponse = '';
-
       for await (const chunk of stream) {
         botResponse += chunk.text;
         setMessages((prev) => {
@@ -118,55 +109,32 @@ const AIAssistBot: React.FC = () => {
     setInput('');
   };
 
-  const handleQuickReplyClick = (reply: string) => {
-    sendMessage(reply);
-  };
+  const handleQuickReplyClick = (reply: string) => sendMessage(reply);
 
   return (
     <>
-      {/* ✅ AI Chat Button - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-[60]">
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setIsOpen(!isOpen)}
-          className="bg-brand-primary text-white p-4 rounded-full shadow-lg flex items-center justify-center relative"
-          aria-label="Toggle AI Assistant"
-        >
-          <AnimatePresence mode="wait">
-            {isOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <XIcon className="h-7 w-7" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="chat"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ChatIcon className="h-7 w-7" />
-                {/* Red badge only before first open */}
-                {showBadge && (
-                  <span className="absolute -top-1 -right-1 flex h-4 w-4">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 justify-center items-center text-white text-xs">1</span>
-                  </span>
-                )}
-              </motion.div>
+      {/* ✅ Floating Chat Button (only when closed) */}
+      {!isOpen && (
+        <div className="fixed bottom-20 right-6 z-[60]">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsOpen(true)}
+            className="bg-brand-primary text-white p-4 rounded-full shadow-lg flex items-center justify-center relative"
+            aria-label="Open AI Assistant"
+          >
+            <ChatIcon className="h-7 w-7" />
+            {showBadge && (
+              <span className="absolute -top-1 -right-1 flex h-4 w-4">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 justify-center items-center text-white text-xs">1</span>
+              </span>
             )}
-          </AnimatePresence>
-        </motion.button>
-      </div>
+          </motion.button>
+        </div>
+      )}
 
-      {/* ✅ Chat Panel - Positioned above the button */}
+      {/* ✅ Chat Panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -181,6 +149,13 @@ const AIAssistBot: React.FC = () => {
                 <h3 className="font-bold text-lg">IGFS AI Assistant</h3>
                 <p className="text-sm text-gray-200">Your study abroad guide</p>
               </div>
+              {/* ❌ Close button inside header */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-2 hover:bg-white/20 rounded-full transition"
+              >
+                <XIcon className="h-6 w-6" />
+              </button>
             </header>
 
             <div className="flex-grow p-4 overflow-y-auto bg-gray-50 dark:bg-gray-900">
