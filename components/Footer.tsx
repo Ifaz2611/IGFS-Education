@@ -17,15 +17,53 @@ const Footer: React.FC = () => {
           {/* Brand Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <img className="h-10 w-10 bg-white rounded-full p-1" src="/logo.png" alt="IGFS Logo" />
+              <img
+                className="h-10 w-10 bg-white rounded-full p-1"
+                src="/logo.png"
+                alt="IGFS Logo"
+              />
               <span className="text-white text-2xl font-bold">IGFS</span>
             </div>
-            <p className="text-gray-300 text-sm">Your trusted partner in navigating the journey to international education and a global career.</p>
+            <p className="text-gray-300 text-sm">
+              Your trusted partner in navigating the journey to international education and a global career.
+            </p>
             <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-gray-300 hover:text-brand-secondary"><FacebookIcon /></a>
-              <a href="#" className="text-gray-300 hover:text-brand-secondary"><TwitterIcon /></a>
-              <a href="#" className="text-gray-300 hover:text-brand-secondary"><LinkedinIcon /></a>
-              <a href="#" className="text-gray-300 hover:text-brand-secondary"><InstagramIcon /></a>
+              <a
+                href="https://www.facebook.com/igfs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on Facebook"
+                className="text-gray-300 hover:text-brand-secondary transition-colors"
+              >
+                <FacebookIcon />
+              </a>
+              <a
+                href="https://www.twitter.com/igfs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on Twitter"
+                className="text-gray-300 hover:text-brand-secondary transition-colors"
+              >
+                <TwitterIcon />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/igfs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on LinkedIn"
+                className="text-gray-300 hover:text-brand-secondary transition-colors"
+              >
+                <LinkedinIcon />
+              </a>
+              <a
+                href="https://www.instagram.com/igfs"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow us on Instagram"
+                className="text-gray-300 hover:text-brand-secondary transition-colors"
+              >
+                <InstagramIcon />
+              </a>
             </div>
           </div>
 
@@ -33,10 +71,38 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 tracking-wider">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-300 hover:text-brand-secondary text-sm">About Us</Link></li>
-              <li><Link to="/services" className="text-gray-300 hover:text-brand-secondary text-sm">Services</Link></li>
-              <li><Link to="/destinations" className="text-gray-300 hover:text-brand-secondary text-sm">Destinations</Link></li>
-              <li><Link to="/success-stories" className="text-gray-300 hover:text-brand-secondary text-sm">Testimonials</Link></li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/services"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/destinations"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  Destinations
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/success-stories"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  Testimonials
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -44,10 +110,40 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 tracking-wider">Resources</h3>
             <ul className="space-y-2">
-              <li><Link to="/blog" className="text-gray-300 hover:text-brand-secondary text-sm">Blog</Link></li>
-              <li><Link to="/process" className="text-gray-300 hover:text-brand-secondary text-sm">Our Process</Link></li>
-              <li><Link to="/contact" className="text-gray-300 hover:text-brand-secondary text-sm">Contact Us</Link></li>
-              <li><a href="#" className="text-gray-300 hover:text-brand-secondary text-sm">FAQ</a></li>
+              <li>
+                <Link
+                  to="/blog"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/process"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  Our Process
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://help.igfs.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
+                >
+                  FAQ
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -55,14 +151,40 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 tracking-wider">Contact Us</h3>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li className="flex items-start"><span className="mr-2 mt-1">📍</span> 123 Education Lane, Global City, 10001</li>
-              <li className="flex items-center"><span className="mr-2">📧</span> <a href="mailto:info@igfs.com" className="hover:text-brand-secondary">info@igfs.com</a></li>
-              <li className="flex items-center"><span className="mr-2">📞</span> <a href="tel:+1234567890" className="hover:text-brand-secondary">+1 (234) 567-890</a></li>
+              <li className="flex items-start">
+                <span className="mr-2 mt-1">📍</span>
+                <span>123 Education Lane, Global City, 10001</span>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2">📧</span>
+                <a
+                  href="mailto:info@igfs.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-secondary transition-colors"
+                >
+                  info@igfs.com
+                </a>
+              </li>
+              <li className="flex items-center">
+                <span className="mr-2">📞</span>
+                <a
+                  href="tel:+1234567890"
+                  className="hover:text-brand-secondary transition-colors"
+                >
+                  +1 (234) 567-890
+                </a>
+              </li>
             </ul>
           </div>
         </div>
+
+        {/* Copyright */}
         <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} IGFS. All Rights Reserved. Your Future, Our Mission.</p>
+          <p>
+            &copy; {new Date().getFullYear()} IGFS. All Rights Reserved.{' '}
+            <span className="hidden sm:inline">Your Future, Our Mission.</span>
+          </p>
         </div>
       </div>
     </motion.footer>
