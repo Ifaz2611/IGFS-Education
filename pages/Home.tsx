@@ -56,15 +56,15 @@ const ServiceCard = React.memo(({ service }: { service: string }) => {
             <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-3">{service}</h3>
             <ul className="text-gray-600 dark:text-gray-400 text-left space-y-2">
                 <li className="flex items-start">
-                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" /> 
+                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
                     Personalized university matching
                 </li>
                 <li className="flex items-start">
-                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" /> 
+                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
                     Course selection advice
                 </li>
                 <li className="flex items-start">
-                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" /> 
+                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
                     Profile evaluation
                 </li>
             </ul>
@@ -73,7 +73,11 @@ const ServiceCard = React.memo(({ service }: { service: string }) => {
 });
 
 const Home: React.FC = () => {
-    const [isSubmitting, setIsSubmitting] = React.useState(false);
+    // ✅ Separate loading states for each form
+    const [isSubmittingNewsletter, setIsSubmittingNewsletter] = React.useState(false);
+    const [isSubmittingContact, setIsSubmittingContact] = React.useState(false);
+    const [newsletterSubmitted, setNewsletterSubmitted] = React.useState(false); // Success state
+    const [email, setEmail] = React.useState(''); // ✅ Track email
 
     const staggerContainer: Variants = {
         hidden: {},
@@ -89,12 +93,12 @@ const Home: React.FC = () => {
         hidden: { opacity: 0, scale: 0.95 },
         visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } }
     };
-    
+
     const popIn: Variants = {
         hidden: { scale: 0, rotate: -90 },
         visible: { scale: 1, rotate: 0, transition: { type: 'spring', stiffness: 260, damping: 20 } }
     };
-    
+
     const slideInFrom = (direction: 'left' | 'right'): Variants => ({
         hidden: { opacity: 0, x: direction === 'left' ? -50 : 50 },
         visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } }
@@ -102,22 +106,46 @@ const Home: React.FC = () => {
 
     const firstThreePosts = blogPosts.slice(0, 3);
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    // ✅ Fixed: Handle newsletter form with email capture + download
+    const handleNewsletterSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        // Add your form submission logic here
+        if (!email) return;
+
+        setIsSubmittingNewsletter(true);
+
+        // Simulate backend save (optional)
+        fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: 'study-abroad-guide' }),
+        }).catch(console.error);
+
+        // ✅ Trigger PDF download
         setTimeout(() => {
-            setIsSubmitting(false);
-            alert('Form submitted successfully!');
-        }, 1000);
+            try {
+                const link = document.createElement('a');
+                link.href = '/guides/study-abroad-guide.pdf'; // Place in public/guides/
+                link.download = 'study-abroad-guide.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setNewsletterSubmitted(true);
+            } catch (err) {
+                alert('Download failed. Please try again.');
+            } finally {
+                setIsSubmittingNewsletter(false);
+            }
+        }, 800);
     };
 
-    const handleContactFormSubmit = (e: React.FormEvent) => {
+    // ✅ Handle contact form separately
+    const handleContactSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        // Add your contact form submission logic here
+        setIsSubmittingContact(true);
+
+        // Simulate API call
         setTimeout(() => {
-            setIsSubmitting(false);
+            setIsSubmittingContact(false);
             alert('Message sent successfully!');
         }, 1000);
     };
@@ -127,7 +155,7 @@ const Home: React.FC = () => {
             {/* Hero Section */}
             <section className="relative flex items-center justify-center h-screen text-center text-white" aria-label="Hero banner">
                 <video 
-                    src="https://cdn.pixabay.com/video/2024/04/23/209673-937223363_large.mp4" 
+                    src="https://cdn.pixabay.com/video/2024/04/23/209673-937223363_large.mp4"
                     autoPlay 
                     loop 
                     muted 
@@ -411,39 +439,50 @@ const Home: React.FC = () => {
                 </div>
             </section>
             
-            {/* Lead Magnet */}
+            {/*  FIXED: Lead Magnet (PDF Download) */}
             <section className="py-20 bg-brand-primary text-white" aria-label="Newsletter signup">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold">Get Your Free Study Abroad Guide</h2>
                     <p className="mt-4 max-w-2xl mx-auto">
                         Download our comprehensive PDF guide covering everything from choosing a country to packing your bags.
                     </p>
-                    <motion.form
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.5 }}
-                        variants={staggerContainer}
-                        className="mt-8 max-w-lg mx-auto flex flex-col sm:flex-row gap-4"
-                        onSubmit={handleFormSubmit}>
-                        <motion.input
-                            variants={slideInFrom('left')}
-                            type="email" 
-                            placeholder="Enter your email" 
-                            className="flex-grow px-4 py-3 rounded-lg text-gray-800 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400" 
-                            required 
-                            aria-label="Email address for newsletter"
-                        />
-                        <motion.button
-                            variants={slideInFrom('right')}
-                            animate={{ scale: [1, 1.03, 1] }}
-                            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                            type="submit" 
-                            className="bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90"
-                            disabled={isSubmitting}
-                            aria-label="Download free study abroad guide">
-                            {isSubmitting ? 'Sending...' : 'Download Now'}
-                        </motion.button>
-                    </motion.form>
+
+                    {/*  Success Message */}
+                    {newsletterSubmitted ? (
+                        <div className="mt-8 p-6 bg-white/20 rounded-lg backdrop-blur-sm">
+                            <p className="text-lg">✅ Thank you! The guide has been downloaded.</p>
+                            <p className="text-sm mt-2">Check your inbox for more tips.</p>
+                        </div>
+                    ) : (
+                        <motion.form
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.5 }}
+                            variants={staggerContainer}
+                            className="mt-8 max-w-lg mx-auto flex flex-col sm:flex-row gap-4"
+                            onSubmit={handleNewsletterSubmit}>
+                            <motion.input
+                                variants={slideInFrom('left')}
+                                type="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="flex-grow px-4 py-3 rounded-lg text-gray-800 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                required
+                                aria-label="Email address for newsletter"
+                            />
+                            <motion.button
+                                variants={slideInFrom('right')}
+                                animate={{ scale: [1, 1.03, 1] }}
+                                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                                type="submit"
+                                className="bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90"
+                                disabled={isSubmittingNewsletter}
+                                aria-label="Download free study abroad guide">
+                                {isSubmittingNewsletter ? 'Sending...' : 'Download Now'}
+                            </motion.button>
+                        </motion.form>
+                    )}
                 </div>
             </section>
 
@@ -492,90 +531,89 @@ const Home: React.FC = () => {
                 </div>
             </section>
             
-{/* Contact Section */}
-<section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Contact us">
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12">
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={staggerContainer}>
-                <h2 className="text-3xl font-bold text-brand-primary dark:text-gray-100">Ready to Start?</h2>
-                <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                    Reach out to us today. Our expert counselors are ready to help you plan your future.
-                </p>
-                <form className="mt-8 space-y-4" onSubmit={handleContactFormSubmit}>
-                    <motion.input 
-                        variants={fadeInUp} 
-                        type="text" 
-                        placeholder="Your Name" 
-                        className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
-                        required 
-                        aria-label="Your name"
-                    />
-                    <motion.input 
-                        variants={fadeInUp} 
-                        type="email" 
-                        placeholder="Your Email" 
-                        className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
-                        required 
-                        aria-label="Your email"
-                    />
-                    <motion.textarea 
-                        variants={fadeInUp} 
-                        placeholder="Your Message" 
-                        rows={4} 
-                        className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
-                        required
-                        aria-label="Your message"
-                    ></motion.textarea>
-                    <motion.button 
-                        variants={fadeInUp} 
-                        type="submit" 
-                        className="w-full bg-brand-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300"
-                        disabled={isSubmitting}
-                        aria-label="Send message">
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </motion.button>
-                </form>
-            </motion.div>
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={scaleIn}>
-                <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                    <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-4">Contact Information</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-2">
-                        <strong>Email:</strong> info@igfs.com
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-2">
-                        <strong>Phone:</strong> +1 (234) 567-890
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        <strong>Address:</strong> 123 Education Lane, Global City
-                    </p>
-                    <h4 className="font-bold text-brand-primary dark:text-gray-200 mb-2">Office Hours:</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
-                    <p className="text-gray-600 dark:text-gray-300">Sat: 10:00 AM - 2:00 PM</p>
-                    <div className="mt-6 h-48 rounded-lg overflow-hidden">
-                        {/* Replace with your map component */}
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193596.26002815957!2d-74.14431223360049!3d40.69728463486588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1755345338868!5m2!1sen!2sbd"
-                            width="100%" 
-                            height="100%" 
-                            style={{ border: 0 }} 
-                            allowFullScreen 
-                            loading="lazy" 
-                            title="Map location"
-                        ></iframe>
+            {/* Contact Section */}
+            <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Contact us">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-12">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={staggerContainer}>
+                            <h2 className="text-3xl font-bold text-brand-primary dark:text-gray-100">Ready to Start?</h2>
+                            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+                                Reach out to us today. Our expert counselors are ready to help you plan your future.
+                            </p>
+                            <form className="mt-8 space-y-4" onSubmit={handleContactSubmit}>
+                                <motion.input 
+                                    variants={fadeInUp} 
+                                    type="text" 
+                                    placeholder="Your Name" 
+                                    className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
+                                    required 
+                                    aria-label="Your name"
+                                />
+                                <motion.input 
+                                    variants={fadeInUp} 
+                                    type="email" 
+                                    placeholder="Your Email" 
+                                    className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
+                                    required 
+                                    aria-label="Your email"
+                                />
+                                <motion.textarea 
+                                    variants={fadeInUp} 
+                                    placeholder="Your Message" 
+                                    rows={4} 
+                                    className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" 
+                                    required
+                                    aria-label="Your message"
+                                ></motion.textarea>
+                                <motion.button 
+                                    variants={fadeInUp} 
+                                    type="submit" 
+                                    className="w-full bg-brand-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300"
+                                    disabled={isSubmittingContact}
+                                    aria-label="Send message">
+                                    {isSubmittingContact ? 'Sending...' : 'Send Message'}
+                                </motion.button>
+                            </form>
+                        </motion.div>
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                            variants={scaleIn}>
+                            <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                                <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-4">Contact Information</h3>
+                                <p className="text-gray-600 dark:text-gray-300 mb-2">
+                                    <strong>Email:</strong> info@igfs.com
+                                </p>
+                                <p className="text-gray-600 dark:text-gray-300 mb-2">
+                                    <strong>Phone:</strong> +1 (234) 567-890
+                                </p>
+                                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                                    <strong>Address:</strong> 123 Education Lane, Global City
+                                </p>
+                                <h4 className="font-bold text-brand-primary dark:text-gray-200 mb-2">Office Hours:</h4>
+                                <p className="text-gray-600 dark:text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                <p className="text-gray-600 dark:text-gray-300">Sat: 10:00 AM - 2:00 PM</p>
+                                <div className="mt-6 h-48 rounded-lg overflow-hidden">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193596.26002815957!2d-74.14431223360049!3d40.69728463486588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1755345338868!5m2!1sen!2sbd"
+                                        width="100%" 
+                                        height="100%" 
+                                        style={{ border: 0 }} 
+                                        allowFullScreen 
+                                        loading="lazy" 
+                                        title="Map location"
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
-            </motion.div>
-        </div>
-    </div>
-</section>
+            </section>
 
         </div>
     );
