@@ -297,7 +297,7 @@ const Home: React.FC = () => {
                                 title: 'Italy: A legacy of art and culture',
                                 description: 'Study amidst timeless masterpieces. Italy offers unparalleled education in design, architecture, and humanities in the heart of history.',
                                 link: '/destinations',
-                            },
+                            },   
                         ].map(dest => (
                             <motion.div
                                 key={dest.name}
