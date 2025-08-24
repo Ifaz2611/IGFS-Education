@@ -22,9 +22,7 @@ This project is a professional website built with React, TypeScript, and Tailwin
 - **Styling**: Tailwind CSS
 - **Routing**: React Router DOM
 - **Animations**: Framer Motion
-- **Deployment**: Vite.js + GitHub Pages
-- **Icons**: Custom SVG components
-- **State Management**: React Context API
+- **Deployment**: Vite.js 
 
 
 ## 🚀 Getting Started
@@ -33,12 +31,6 @@ This project is a professional website built with React, TypeScript, and Tailwin
 
 - Node.js (v16 or higher)
 - npm or yarn
-
-🤝 Contributing
-Fork the repository
-Create your feature branch (git checkout -b feature/AmazingFeature)<br>
-Commit your changes (git commit -m 'Add some AmazingFeature')<br>
-Push to the branch (git push origin feature/AmazingFeature)<br>
 
 
 # 📝 License<br>
