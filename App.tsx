@@ -36,7 +36,7 @@ const App: React.FC = () => {
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about" element={<About />} />/
               <Route path="/services" element={<Services />} />
               <Route path="/destinations" element={<Destinations />} />
               <Route path="/process" element={<Process />} />

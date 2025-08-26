@@ -153,57 +153,60 @@ const Home: React.FC = () => {
     return (
         <div className="bg-white dark:bg-gray-900 overflow-x-hidden">
             {/* Hero Section */}
-            <section className="relative flex items-center justify-center h-screen text-center text-white" aria-label="Hero banner">
-                <video 
-                    src="https://cdn.pixabay.com/video/2024/04/23/209673-937223363_large.mp4"
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline
-                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
-                />
-                <div className="absolute top-0 left-0 w-full h-full bg-brand-primary/70 z-10"></div>
-                <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                        Your Global Future <br /> Starts Here with IGFS
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                        className="mt-6 text-lg text-gray-200 max-w-2xl mx-auto">
-                        We pave the way for ambitious students to access world-class education. Discover your potential, find the right university, and start your international journey with our expert guidance.
-                    </motion.p>
-                    <motion.div
-                        initial="hidden"
-                        animate="visible"
-                        variants={staggerContainer}
-                        className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                        <MotionLink
-                            variants={fadeInUp}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            to="/contact" 
-                            className="bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition duration-300"
-                            aria-label="Book a free consultation">
-                            Book a Free Consultation
-                        </MotionLink>
-                        <MotionLink
-                            variants={fadeInUp}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            to="/destinations" 
-                            className="bg-transparent text-white font-semibold py-3 px-8 rounded-lg border-2 border-white hover:bg-white hover:text-brand-primary transition duration-300"
-                            aria-label="Explore study destinations">
-                            Explore Destinations
-                        </MotionLink>
-                    </motion.div>
-                </div>
-            </section>
+            <section className="relative flex items-center justify-start h-screen text-left text-white">
+            <video 
+                src="/videos/Home-hero.mp4"
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="absolute top-0 left-0 w-full h-full object-cover z-0"
+            />
+            <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.h1
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-xl"
+                >
+                    Your Global Future <br /> Starts Here with IGFS
+                </motion.h1>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                    className="mt-6 text-lg text-gray-200 max-w-lg"
+                >
+                    We pave the way for ambitious students to access world-class education. 
+                    Discover your potential, find the right university, and start your international journey with our expert guidance.
+                </motion.p>
+                <motion.div
+                    initial="hidden"
+                    animate="visible"
+                    variants={staggerContainer}
+                    className="mt-8 flex flex-col sm:flex-row gap-4"
+                >
+                    <MotionLink
+                        variants={fadeInUp}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        to="/contact" 
+                        className="bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition duration-300"
+                    >
+                        Book a Free Consultation
+                    </MotionLink>
+                    <MotionLink
+                        variants={fadeInUp}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        to="/destinations" 
+                        className="bg-transparent text-white font-semibold py-3 px-8 rounded-lg border-2 border-white hover:bg-white hover:text-brand-primary transition duration-300"
+                    >
+                        Explore Destinations
+                    </MotionLink>
+                </motion.div>
+            </div>
+         </section>
 
             {/* Trust Strip */}
             <motion.section
