@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import { useAppContext } from './contexts/AppContext';
 
 // Import your components
 import Navbar from './components/Navbar';
@@ -10,8 +9,9 @@ import ScrollToTop from './components/ScrollToTop';
 import SettingsPanel from './components/SettingsPanel';
 import AIAssistBot from './components/AIAssistBot';
 import NewsTicker from './components/NewsTicker';
-import MouseTrail from "./components/MouseTrail";
+import MouseTrail from './components/MouseTrail';
 
+// Import pages
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -22,10 +22,13 @@ import Blog from './pages/Blog';
 import SingleBlogPage from './pages/SingleBlogPage';
 import Contact from './pages/Contact';
 
+// Import context
+import { useAppContext } from './contexts/AppContext';
+
 const App: React.FC = () => {
   const { theme } = useAppContext();
 
-  // ✅ Apply the theme class to <html> element
+  // ✅ Apply dark class to <html> element
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -36,7 +39,10 @@ const App: React.FC = () => {
 
   return (
     <HashRouter>
-      {/* ✅ Remove theme from div, now handled on <html> */}
+      {/* 
+        No theme class on div! 
+        Only bg/text classes needed here 
+      */}
       <div className="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
         <Navbar />
         <NewsTicker />
