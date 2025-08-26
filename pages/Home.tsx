@@ -153,60 +153,71 @@ const Home: React.FC = () => {
     return (
         <div className="bg-white dark:bg-gray-900 overflow-x-hidden">
             {/* Hero Section */}
-            <section className="relative flex items-center justify-start h-screen text-left text-white">
-            <video 
+            <section className="relative flex items-center justify-center w-full h-[90vh] overflow-hidden text-white">
+            {/* Video Background */}
+            <video
                 src="/videos/Home-hero.mp4"
-                autoPlay 
-                loop 
-                muted 
+                autoPlay
+                loop
+                muted
                 playsInline
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
             />
-            <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
+
+            {/* Content */}
+            <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center md:justify-start">
+                <div className="text-center md:text-left max-w-xl">
                 <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight max-w-xl"
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug"
                 >
                     Your Global Future <br /> Starts Here with IGFS
                 </motion.h1>
+
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                    className="mt-6 text-lg text-gray-200 max-w-lg"
+                    transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                    className="mt-4 text-sm sm:text-base md:text-lg text-gray-200"
                 >
                     We pave the way for ambitious students to access world-class education. 
                     Discover your potential, find the right university, and start your international journey with our expert guidance.
                 </motion.p>
+
+                {/* Buttons */}
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={staggerContainer}
-                    className="mt-8 flex flex-col sm:flex-row gap-4"
+                    className="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
                 >
                     <MotionLink
-                        variants={fadeInUp}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        to="/contact" 
-                        className="bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition duration-300"
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    to="/contact"
+                    className="bg-brand-secondary text-brand-primary font-semibold py-2 px-6 rounded-md shadow-md hover:opacity-90 transition duration-300 text-sm"
                     >
-                        Book a Free Consultation
+                    Book a Free Consultation
                     </MotionLink>
                     <MotionLink
-                        variants={fadeInUp}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        to="/destinations" 
-                        className="bg-transparent text-white font-semibold py-3 px-8 rounded-lg border-2 border-white hover:bg-white hover:text-brand-primary transition duration-300"
+                    variants={fadeInUp}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    to="/destinations"
+                    className="bg-transparent text-white font-semibold py-2 px-6 rounded-md border border-white hover:bg-white hover:text-brand-primary transition duration-300 text-sm"
                     >
-                        Explore Destinations
+                    Explore Destinations
                     </MotionLink>
                 </motion.div>
+                </div>
             </div>
-         </section>
+            </section>
 
             {/* Trust Strip */}
             <motion.section
