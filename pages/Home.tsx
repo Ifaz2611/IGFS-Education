@@ -156,7 +156,7 @@ const Home: React.FC = () => {
             <section className="relative flex items-center justify-center w-full h-[90vh] overflow-hidden text-white">
             {/* Video Background */}
             <video
-                src="/videos/Home-hero.mp4"
+                src="/videos/Home-hero.mp4"  ///Video 
                 autoPlay
                 loop
                 muted
@@ -410,7 +410,10 @@ const Home: React.FC = () => {
                                 name: 'Priya Sharma', 
                                 country: 'USA', 
                                 quote: "IGFS made my dream of studying in the US a reality. Their personalized guidance was invaluable.", 
-                                img: 'https://picsum.photos/id/1027/100/100' 
+                                img: 'https://picsum.photos/id/1027/100/100'  
+                                                                            
+                                                                            /// If you want to add localy photo then 
+                                                                             /// 1st download to public then /images/priya.jpg 
                             },
                             { 
                                 name: 'Jin-Woo Park', 
