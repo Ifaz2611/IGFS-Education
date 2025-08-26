@@ -24,17 +24,13 @@ This project is a professional website built with React, TypeScript, and Tailwin
 - **Animations**: Framer Motion
 - **Deployment**: Vite.js 
 
-
 ## 🚀 Getting Started
 
-## Prerequisites
+### Prerequisites
 
 - Node.js (v16 or higher)
 - npm or yarn
 
+## 📝 License
 
-# 📝 License<br>
-## This project is proprietary and confidential. All rights reserved.
-
-
-
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
