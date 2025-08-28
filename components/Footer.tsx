@@ -134,15 +134,14 @@ const Footer: React.FC = () => {
                   Contact Us
                 </Link>
               </li>
+              {/* ✅ Fixed: Internal Link to FAQ Page */}
               <li>
-                <a
-                  href="https://help.igfs.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/faq"
                   className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
                 >
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

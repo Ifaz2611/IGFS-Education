@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // Import your components
 import Navbar from './components/Navbar';
@@ -21,17 +21,51 @@ import SuccessStories from './pages/SuccessStories';
 import Blog from './pages/Blog';
 import SingleBlogPage from './pages/SingleBlogPage';
 import Contact from './pages/Contact';
-
-// ✅ Import FAQ Page
-import FAQ from './pages/FAQ'; // Make sure path is correct
+import FAQ from './pages/FAQ'; // ✅ Already correct
 
 // Import context
 import { useAppContext } from './contexts/AppContext';
 
+// Wrapper component to access location
+function AppContent() {
+  const location = useLocation();
+  const currentPath = location.pathname + location.hash;
+
+  return (
+    <div className="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
+      <Navbar />
+      <NewsTicker />
+      
+      {/* ✅ Key ensures re-render when route changes */}
+      <main key={currentPath}>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/destinations" element={<Destinations />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<SingleBlogPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
+        </Routes>
+      </main>
+
+      <Footer />
+      <WhatsAppButton />
+      <SettingsPanel />
+      <AIAssistBot />
+      <MouseTrail />
+    </div>
+  );
+}
+
 const App: React.FC = () => {
   const { theme } = useAppContext();
 
-  // Apply dark class to <html> element
+  // Apply dark mode class to html
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -42,31 +76,7 @@ const App: React.FC = () => {
 
   return (
     <HashRouter>
-      <div className="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
-        <Navbar />
-        <NewsTicker />
-        <main>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/destinations" element={<Destinations />} />
-            <Route path="/process" element={<Process />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<SingleBlogPage />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* ✅ New Route */}
-            <Route path="/faq" element={<FAQ />} />
-          </Routes>
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <SettingsPanel />
-        <AIAssistBot />
-        <MouseTrail />
-      </div>
+      <AppContent />
     </HashRouter>
   );
 };
