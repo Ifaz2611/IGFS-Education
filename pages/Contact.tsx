@@ -13,7 +13,7 @@ interface ContactFormData {
   funding: string;
   studyLevel: string;
   office: string;
-  agreeTerms: boolean;
+  // agreeTerms: boolean;
   contactConsent: boolean;
   updatesConsent: boolean;
 }
@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
     if (!formData.funding) newErrors.funding = 'Please select funding method';
     if (!formData.studyLevel) newErrors.studyLevel = 'Please select study level';
     if (!formData.office) newErrors.office = 'Please select nearest office';
-    if (!formData.agreeTerms) newErrors.agreeTerms = 'You must agree to the Terms and Privacy Policy';
+    // if (!formData.agreeTerms) newErrors.agreeTerms = 'You must agree to the Terms and Privacy Policy';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
