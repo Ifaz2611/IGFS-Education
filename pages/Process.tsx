@@ -79,14 +79,14 @@ const Process: React.FC = () => {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="relative max-w-4xl mx-auto">
                         
-                        {/* ✅ Visible dashed timeline line */}
+                        {/* ✅ Fixed: Dashed timeline line only visible on desktop */}
                         <div 
-                            className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 border-l-2 border-dashed border-gray-300 dark:border-gray-600" 
+                            className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 border-l-2 border-dashed border-gray-300 dark:border-gray-600" 
                             aria-hidden="true"
                         ></div>
 
                         {steps.map((item, index) => {
-                            // ✅ Correct side calculation
+                            // Determine side for desktop (left or right)
                             const side = index % 2 === 0 ? -1 : 1;
 
                             const contentVariant: Variants = {
@@ -104,53 +104,70 @@ const Process: React.FC = () => {
                                     key={item.step}
                                     initial="hidden"
                                     whileInView="visible"
-                                    viewport={{ once: true, amount: 0.5 }}
-                                    className={`mb-12 flex md:items-center w-full ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                                    
-                                    {/* Empty half for spacing on larger screens */}
+                                    viewport={{ once: true, amount: 0.3 }}
+                                    className={`mb-12 md:mb-16 flex md:items-center w-full ${
+                                        index % 2 !== 0 ? 'md:flex-row-reverse' : ''
+                                    }`}
+                                >
+                                    {/* Empty half for desktop layout spacing */}
                                     <div className="hidden md:block w-1/2"></div>
                                     
-                                    {/* Step number circle */}
+                                    {/* Step number circle (desktop only) */}
                                     <div className="hidden md:block relative">
                                         <motion.div
                                             variants={iconVariant}
-                                            className="h-16 w-16 rounded-full bg-brand-secondary text-brand-primary text-3xl flex items-center justify-center font-bold z-10 relative">
+                                            className="h-16 w-16 rounded-full bg-brand-secondary text-brand-primary text-3xl flex items-center justify-center font-bold z-10 relative"
+                                        >
                                             {item.step}
                                         </motion.div>
                                     </div>
 
-                                    {/* Content */}
-                                    <motion.div variants={contentVariant} className="w-full md:w-1/2 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md md:shadow-lg">
-                                        {/* Mobile circle + title */}
+                                    {/* Content Card */}
+                                    <motion.div
+                                        variants={contentVariant}
+                                        className="w-full md:w-1/2 bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-md md:shadow-lg"
+                                    >
+                                        {/* Mobile: Step circle + title */}
                                         <div className="flex items-center md:hidden mb-4">
-                                            <div className="h-12 w-12 rounded-full bg-brand-secondary text-brand-primary text-2xl flex items-center justify-center font-bold mr-4">{item.step}</div>
-                                            <h2 className="text-2xl font-bold text-brand-primary dark:text-gray-100">{item.title}</h2>
+                                            <div className="h-12 w-12 rounded-full bg-brand-secondary text-brand-primary text-2xl flex items-center justify-center font-bold mr-4">
+                                                {item.step}
+                                            </div>
+                                            <h2 className="text-2xl font-bold text-brand-primary dark:text-gray-100">
+                                                {item.title}
+                                            </h2>
                                         </div>
 
-                                        <h2 className="hidden md:block text-2xl font-bold text-brand-primary dark:text-gray-100 mb-3">{item.title}</h2>
-                                        <p className="text-gray-600 dark:text-gray-300">{item.description}</p>
+                                        {/* Desktop: Step title */}
+                                        <h2 className="hidden md:block text-2xl font-bold text-brand-primary dark:text-gray-100 mb-4">
+                                            {item.title}
+                                        </h2>
 
-                                        {/* Details list animation */}
+                                        <p className="text-gray-600 dark:text-gray-300 mb-4">
+                                            {item.description}
+                                        </p>
+
+                                        {/* Details list with animation */}
                                         <motion.ul
                                             variants={listContainer}
                                             initial="hidden"
                                             whileInView="visible"
                                             viewport={{ once: true }}
-                                            className="mt-4 space-y-2 text-sm text-gray-700 dark:text-gray-400"
+                                            className="space-y-2 text-sm text-gray-700 dark:text-gray-400"
                                         >
-                                            {item.details.map(detail => (
-                                                <motion.li 
-                                                    key={detail} 
+                                            {item.details.map((detail) => (
+                                                <motion.li
+                                                    key={detail}
                                                     variants={listItem}
-                                                    className="flex"
+                                                    className="flex items-start"
                                                 >
-                                                    <span className="text-green-500 mr-2">✓</span>{detail}
+                                                    <span className="text-green-500 mr-2 mt-1">✓</span>
+                                                    {detail}
                                                 </motion.li>
                                             ))}
                                         </motion.ul>
                                     </motion.div>
                                 </motion.div>
-                            )
+                            );
                         })}
                     </div>
                 </div>
@@ -174,10 +191,12 @@ const Process: React.FC = () => {
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="inline-block">
+                            className="inline-block"
+                        >
                             <Link 
                                 to="/contact" 
-                                className="bg-white text-brand-primary font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 text-lg">
+                                className="bg-white text-brand-primary font-bold py-4 px-8 rounded-full shadow-lg hover:bg-gray-100 transition-all duration-300 text-lg"
+                            >
                                 Schedule Your Free Counseling
                             </Link>
                         </motion.div>

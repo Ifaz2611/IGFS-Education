@@ -22,13 +22,16 @@ import Blog from './pages/Blog';
 import SingleBlogPage from './pages/SingleBlogPage';
 import Contact from './pages/Contact';
 
+// ✅ Import FAQ Page
+import FAQ from './pages/FAQ'; // Make sure path is correct
+
 // Import context
 import { useAppContext } from './contexts/AppContext';
 
 const App: React.FC = () => {
   const { theme } = useAppContext();
 
-  // ✅ Apply dark class to <html> element
+  // Apply dark class to <html> element
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -39,10 +42,6 @@ const App: React.FC = () => {
 
   return (
     <HashRouter>
-      {/* 
-        No theme class on div! 
-        Only bg/text classes needed here 
-      */}
       <div className="font-sans bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
         <Navbar />
         <NewsTicker />
@@ -58,6 +57,8 @@ const App: React.FC = () => {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<SingleBlogPage />} />
             <Route path="/contact" element={<Contact />} />
+            {/* ✅ New Route */}
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </main>
         <Footer />
