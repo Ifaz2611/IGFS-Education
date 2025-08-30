@@ -1,4 +1,3 @@
-// src/pages/FAQ.tsx
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -18,7 +17,7 @@ const FAQ: React.FC = () => {
     {
       question: "Which countries do you help students apply to?",
       answer:
-        "We assist students in applying to top universities in the USA, UK, Canada, Australia, Germany, and more.",
+        "We assist students in applying to top universities in the USA, Italy, South Korea ",
     },
     {
       question: "Do you help with scholarships and education loans?",
@@ -86,7 +85,7 @@ const FAQ: React.FC = () => {
             <p className="text-gray-600 dark:text-gray-400">
               Still have questions? Feel free to{' '}
               <a
-                href="mailto:info@igfs.com"
+                href="" // add mail here 
                 className="text-brand-secondary hover:underline font-medium"
               >
                 contact us
