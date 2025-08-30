@@ -95,14 +95,14 @@ const Footer: React.FC = () => {
                   Destinations
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/success-stories"
                   className="text-gray-300 hover:text-brand-secondary text-sm transition-colors"
                 >
                   Testimonials
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
