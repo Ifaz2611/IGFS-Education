@@ -9,9 +9,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "isolatedModules": true,
-    "moduleDetection": "force",
     "noEmit": true,
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
@@ -19,14 +18,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
-    // ✅ Add baseUrl to enable paths like "@/components"
     "baseUrl": ".",
-
-    // ✅ Now paths will resolve correctly
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }

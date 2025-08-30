@@ -126,52 +126,55 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Our Story Section */}
-      <section className="bg-gradient-to-br from-brand-light to-brand-primary/10 dark:from-gray-800 dark:to-gray-900 py-20">
+        {/* Our Story Section */}
+        <section className="bg-gradient-to-br from-brand-light to-brand-primary/10 dark:from-gray-800 dark:to-gray-900 py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }}
-              className="order-2 lg:order-1"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+                className="order-2 lg:order-1"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100 relative inline-block">
+                <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100 relative inline-block">
                 Our Story
                 <div className="w-1/3 h-1 bg-brand-secondary mt-3 rounded-full"></div>
-              </h2>
-              <p className="mt-6 text-gray-600 dark:text-gray-300 leading-relaxed">
+                </h2>
+                <p className="mt-6 text-gray-600 dark:text-gray-300 leading-relaxed">
                 Founded in 2010, the International Guide for Students (IGFS) began with a simple idea: every student
                 deserves a chance to pursue their dream education, regardless of their background. What started as a
                 small advisory service has grown into a global consultancy with partners across three continents.
-              </p>
-              <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+                </p>
+                <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
                 Our journey has been fueled by the success stories of thousands of students we've guided, each one
                 reinforcing our commitment to excellence and integrity. We believe that studying abroad is more than
                 just an academic pursuit—it's a transformative experience that shapes character, builds resilience, and
                 opens doors to a world of possibilities.
-              </p>
+                </p>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }}
-              className="order-1 lg:order-2"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6 }}
+                className="order-1 lg:order-2"
             >
-              <div className="relative">
+                <div className="relative">
                 <div className="absolute -inset-4 bg-brand-secondary rounded-2xl transform rotate-3"></div>
-                <img
-                  src="https://picsum.photos/id/367/600/400"
-                  alt="IGFS Team working"
-                  className="relative rounded-2xl shadow-xl w-full object-cover"
+                <video
+                    src="/videos/Home-hero.mp4"  // 🔁 Replace with the actual filename after uploading
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="relative rounded-2xl shadow-xl w-full object-cover"
                 />
-              </div>
+                </div>
             </motion.div>
-          </div>
+            </div>
         </div>
-      </section>
+        </section>
 
       {/* Meet the Team Section */}
       <section className="py-20">

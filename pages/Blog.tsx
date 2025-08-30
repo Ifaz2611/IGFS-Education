@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
 import { ArrowRightIcon } from '../components/icons';
-import { blogPosts } from '../constants'; // ✅ Correct import
+import { blogPosts } from '../constants'; 
 
 const Blog: React.FC = () => {
   console.log('Blog component rendered');
