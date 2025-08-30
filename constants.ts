@@ -1,5 +1,3 @@
-// src/constants.ts
-
 /**
  * Navigation links for the main menu
  */

@@ -1,30 +1,38 @@
 import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 
-// Define the form data type for clarity (helps backend devs) - Asif Amin 
+/**
+ * =============================
+ * Interface: ContactFormData
+ * =============================
+ * Defines the shape of the form data being submitted.
+ * 🔹 This helps frontend and backend teams stay aligned.
+ * 🔹 All fields match the form inputs exactly.
+ * 🔹 `fullName` and `timestamp` are derived server-side or in payload.
+ * 
+ * Backend Note: Expect these fields in the POST request body.
+ */
 interface ContactFormData {
   firstName: string;
   lastName: string;
   email: string;
   mobile: string;
-  destination: string;
-  startDate: string;
-  counsellingMode: string;
-  funding: string;
-  studyLevel: string;
-  office: string;
-  // agreeTerms: boolean;
-  contactConsent: boolean;
-  updatesConsent: boolean;
+  destination: string; // e.g., "USA", "South Korea"
+  startDate: string; // e.g., "Fall 2024"
+  counsellingMode: string; // "In-Person" or "Virtual"
+  funding: string; // "Self-funded", "Education Loan", "Scholarship"
+  studyLevel: string; // "Bachelors", "Masters", "PhD"
+  contactConsent: boolean; // Opt-in for contact
+  updatesConsent: boolean; // Opt-in for marketing
 }
 
 const Contact: React.FC = () => {
-  // Animation variants (unchanged)
+  // Animation variants for smooth UI
   const staggerContainer: Variants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.1, // Stagger child animations
       },
     },
   };
@@ -38,7 +46,14 @@ const Contact: React.FC = () => {
     },
   };
 
-  // State for form data
+  /**
+   * ===================
+   * Form State
+   * ===================
+   * Holds all user input.
+   * 🔹 `office` field has been removed per client request.
+   * 🔹 All form fields are controlled via `handleChange`.
+   */
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: '',
     lastName: '',
@@ -49,24 +64,27 @@ const Contact: React.FC = () => {
     counsellingMode: '',
     funding: '',
     studyLevel: '',
-    office: '',
-    agreeTerms: false,
     contactConsent: false,
     updatesConsent: false,
   });
 
-  // Loading and submission state
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
 
-  // Handle input changes
+  /**
+   * ===================
+   * Handle Input Change
+   * ===================
+   * Updates form state dynamically.
+   * 🔹 Handles both text inputs and checkboxes.
+   * 🔹 Clears error for field when user starts typing.
+   * 🔹 Uses type assertion for checkbox values.
+   */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = e.target;
-
-    // Handle checkboxes separately
     const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
 
     setFormData((prev) => ({
@@ -74,7 +92,7 @@ const Contact: React.FC = () => {
       [name]: type === 'checkbox' ? checked : value,
     }));
 
-    // Clear error on change
+    // Clear error when user interacts with the field
     if (errors[name as keyof ContactFormData]) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -84,7 +102,14 @@ const Contact: React.FC = () => {
     }
   };
 
-  // Validate form
+  /**
+   * ===================
+   * Form Validation
+   * ===================
+   * Client-side validation before submission.
+   * 🔹 Backend must re-validate — never trust frontend!
+   * 🔹 Returns `false` if any error exists.
+   */
   const validateForm = (): boolean => {
     const newErrors: Partial<ContactFormData> = {};
 
@@ -101,31 +126,37 @@ const Contact: React.FC = () => {
     if (!formData.counsellingMode) newErrors.counsellingMode = 'Please select counselling mode';
     if (!formData.funding) newErrors.funding = 'Please select funding method';
     if (!formData.studyLevel) newErrors.studyLevel = 'Please select study level';
-    if (!formData.office) newErrors.office = 'Please select nearest office';
-    // if (!formData.agreeTerms) newErrors.agreeTerms = 'You must agree to the Terms and Privacy Policy';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
+  /**
+   * ===================
+   * Form Submission
+   * ===================
+   * Sends data to backend via POST request.
+   * 🔹 Endpoint: `/api/contact` — update if needed.
+   * 🔹 Payload includes derived fields: `fullName`, `timestamp`.
+   * 🔹 Handles success/error states and resets form on success.
+   * 🔹 Error caught and logged — user sees generic error message.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus('idle'); // Reset status
 
-    // Prepare payload (this is what the backend will receive)
+    // Prepare payload for backend
     const payload = {
       ...formData,
-      fullName: `${formData.firstName} ${formData.lastName}`,
-      timestamp: new Date().toISOString(),
+      fullName: `${formData.firstName} ${formData.lastName}`.trim(),
+      timestamp: new Date().toISOString(), // ISO format for easy parsing
     };
 
     try {
-      // 🔁 Backend Dev: Replace with your actual API endpoint
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -136,7 +167,7 @@ const Contact: React.FC = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        // Optionally reset form
+        // Reset form after successful submission
         setFormData({
           firstName: '',
           lastName: '',
@@ -147,16 +178,14 @@ const Contact: React.FC = () => {
           counsellingMode: '',
           funding: '',
           studyLevel: '',
-          office: '',
-          agreeTerms: false,
           contactConsent: false,
           updatesConsent: false,
         });
       } else {
-        throw new Error('Submission failed');
+        throw new Error(`HTTP ${response.status}: Submission failed`);
       }
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('🔧 [Contact Form] Submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -198,7 +227,6 @@ const Contact: React.FC = () => {
             variants={staggerContainer}
             className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-8 sm:p-12 rounded-lg shadow-lg"
           >
-            {/* Form Title */}
             <div className="text-left mb-8">
               <h2 className="text-3xl font-extrabold text-brand-primary dark:text-gray-100">
                 IGFS Can Help You
@@ -210,7 +238,7 @@ const Contact: React.FC = () => {
               </p>
             </div>
 
-            {/* Success/Error Message */}
+            {/* Success/Error Feedback */}
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-md">
                 Thank you! We will contact you soon.
@@ -222,20 +250,20 @@ const Contact: React.FC = () => {
               </div>
             )}
 
-            {/* Contact Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Fields */}
               <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     First Name*
                   </label>
                   <input
                     type="text"
-                    id="first-name"
+                    id="firstName"
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
+                    autoComplete="given-name"
                     className={`mt-1 block w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                       errors.firstName ? 'border-red-500' : 'border-gray-300'
                     }`}
@@ -243,15 +271,16 @@ const Contact: React.FC = () => {
                   {errors.firstName && <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>}
                 </div>
                 <div>
-                  <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Last Name*
                   </label>
                   <input
                     type="text"
-                    id="last-name"
+                    id="lastName"
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
+                    autoComplete="family-name"
                     className={`mt-1 block w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                       errors.lastName ? 'border-red-500' : 'border-gray-300'
                     }`}
@@ -271,6 +300,7 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  autoComplete="email"
                   className={`mt-1 block w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
@@ -293,6 +323,7 @@ const Contact: React.FC = () => {
                     name="mobile"
                     value={formData.mobile}
                     onChange={handleChange}
+                    autoComplete="tel"
                     className={`flex-1 block w-full px-4 py-3 focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:text-white ${
                       errors.mobile ? 'border-red-500' : 'border-transparent'
                     }`}
@@ -324,11 +355,11 @@ const Contact: React.FC = () => {
                   {errors.destination && <p className="mt-1 text-sm text-red-500">{errors.destination}</p>}
                 </div>
                 <div>
-                  <label htmlFor="start-date" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     When would you like to start?*
                   </label>
                   <select
-                    id="start-date"
+                    id="startDate"
                     name="startDate"
                     value={formData.startDate}
                     onChange={handleChange}
@@ -348,11 +379,11 @@ const Contact: React.FC = () => {
               {/* Counselling Mode & Funding */}
               <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="counselling-mode" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label htmlFor="counsellingMode" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Preferred Mode of Counselling*
                   </label>
                   <select
-                    id="counselling-mode"
+                    id="counsellingMode"
                     name="counsellingMode"
                     value={formData.counsellingMode}
                     onChange={handleChange}
@@ -388,14 +419,14 @@ const Contact: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* Study Level & Office */}
-              <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-6">
+              {/* Study Level */}
+              <motion.div variants={fadeInUp}>
                 <div>
-                  <label htmlFor="study-level" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label htmlFor="studyLevel" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     Preferred Study Level*
                   </label>
                   <select
-                    id="study-level"
+                    id="studyLevel"
                     name="studyLevel"
                     value={formData.studyLevel}
                     onChange={handleChange}
@@ -410,64 +441,10 @@ const Contact: React.FC = () => {
                   </select>
                   {errors.studyLevel && <p className="mt-1 text-sm text-red-500">{errors.studyLevel}</p>}
                 </div>
-                <div>
-                  <label htmlFor="office" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Nearest IGFS Office*
-                  </label>
-                  <select
-                    id="office"
-                    name="office"
-                    value={formData.office}
-                    onChange={handleChange}
-                    className={`mt-1 block w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
-                      errors.office ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                  >
-                    <option value="">Select</option>
-                    <option value="New York, USA">New York, USA</option>
-                    <option value="Seoul, South Korea">Seoul, South Korea</option>
-                    <option value="Rome, Italy">Rome, Italy</option>
-                  </select>
-                  {errors.office && <p className="mt-1 text-sm text-red-500">{errors.office}</p>}
-                </div>
               </motion.div>
 
               {/* Consent Checkboxes */}
               <motion.div variants={fadeInUp} className="space-y-4 pt-4">
-                <div className="flex items-start">
-                  <input
-                    type="checkbox"
-                    id="agree-terms"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms}
-                    onChange={handleChange}
-                    className={`h-4 w-4 mt-1 rounded focus:ring-brand-primary ${
-                      errors.agreeTerms ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                  />
-                  <label
-                    htmlFor="agree-terms"
-                    className="ml-3 text-sm text-gray-600 dark:text-gray-300"
-                  >
-                    I agree to IGFS{' '}
-                    <a
-                      href="/terms"
-                      className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      Terms
-                    </a>{' '}
-                    and{' '}
-                    <a
-                      href="/privacy"
-                      className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      Privacy Policy
-                    </a>
-                    .
-                  </label>
-                </div>
-                {errors.agreeTerms && <p className="text-sm text-red-500 ml-7">{errors.agreeTerms}</p>}
-
                 <div className="flex items-start">
                   <input
                     type="checkbox"
@@ -527,17 +504,39 @@ const Contact: React.FC = () => {
 
 export default Contact;
 
-
-
-///## Backend Integration Guide
-
-// - The form collects structured data under `ContactFormData`.
-// - On submit, it sends a POST request to `/api/contact` (you can change this).
-// - Payload includes all form fields + `fullName` and `timestamp`.
-// - Validation is client-side, but backend must re-validate.
-// - Expected response: HTTP 200 for success, else error handled.
-
-// Tip: Create `/api/contact` endpoint (Node.js/Express, Django, Laravel, etc.) to:
-//   - Save to DB
-//   - Send confirmation email
-//   - Trigger notifications
+/**
+ * =====================================================
+ * 🔧 Backend Integration Guide
+ * =====================================================
+ * 
+ * 📍 Endpoint: POST /api/contact
+ * 
+ * 📦 Payload Example:
+ * {
+ *   "firstName": "John",
+ *   "lastName": "Doe",
+ *   "email": "john@example.com",
+ *   "mobile": "+8801712345678",
+ *   "destination": "USA",
+ *   "startDate": "Fall 2024",
+ *   "counsellingMode": "Virtual",
+ *   "funding": "Self-funded",
+ *   "studyLevel": "Masters",
+ *   "contactConsent": true,
+ *   "updatesConsent": false,
+ *   "fullName": "John Doe",
+ *   "timestamp": "2025-04-05T10:00:00.000Z"
+ * }
+ * 
+ * ✅ Required Actions on Backend:
+ * 1. Re-validate all fields (never trust frontend).
+ * 2. Sanitize input (prevent XSS, spam, etc.).
+ * 3. Store in database (e.g., PostgreSQL, MongoDB).
+ * 4. Send confirmation email to user (optional).
+ * 5. Notify counsellor (Slack, email, CRM).
+ * 
+ * 🛠 Suggested Tech:
+ * - Node.js + Express
+ * - Firebase / Supabase
+ * - Laravel / Django
+ */
