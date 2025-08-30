@@ -1,23 +1,26 @@
-// src/components/ScrollToTop.tsx
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop: React.FC = () => {
-  const { pathname, hash } = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+    // Use location.key to trigger scroll on every navigation
+    const { hash } = location;
+
+    setTimeout(() => {
+      if (hash) {
+        const element = document.querySelector<HTMLElement>(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo(0, 0);
+        }
       } else {
         window.scrollTo(0, 0);
       }
-    } else {
-      // Otherwise, scroll to top
-      window.scrollTo(0, 0);
-    }
-  }, [pathname, hash]);
+    }, 100); // Small delay to ensure DOM is ready
+  }, [location.key]);
 
   return null;
 };
