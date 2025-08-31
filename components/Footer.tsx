@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4 mt-4">
               <a
-                href="https://www.facebook.com/igfs"
+                href="https://www.facebook.com/profile.php?id=61578832565528"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Facebook"
