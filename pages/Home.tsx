@@ -642,20 +642,20 @@ const Home: React.FC = () => {
                             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
                                 <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-4">Contact Information</h3>
                                 <p className="text-gray-600 dark:text-gray-300 mb-2">
-                                    <strong>Email:</strong> info@igfs.com
+                                    <strong>Email:</strong> intguideforstudents@gmail.com
                                 </p>
                                 <p className="text-gray-600 dark:text-gray-300 mb-2">
-                                    <strong>Phone:</strong> +1 (234) 567-890
+                                    <strong>Phone:</strong> +88(01835-152037)
                                 </p>
                                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                                    <strong>Address:</strong> 123 Education Lane, Global City
+                                    <strong>Address:</strong> Amtola, 60 Feet, Mirpur-1216
                                 </p>
                                 <h4 className="font-bold text-brand-primary dark:text-gray-200 mb-2">Office Hours:</h4>
                                 <p className="text-gray-600 dark:text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
                                 <p className="text-gray-600 dark:text-gray-300">Sat: 10:00 AM - 2:00 PM</p>
                                 <div className="mt-6 h-48 rounded-lg overflow-hidden">
                                     <iframe 
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193596.26002815957!2d-74.14431223360049!3d40.69728463486588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1755345338868!5m2!1sen!2sbd"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9313386532103!2d90.36237788684178!3d23.785459232385197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0b7c8db4515%3A0x38adef9072a2e029!2sS%20Paikpara%20-%20Pirerbag%20Amtola%20Rd%20%26%20Kamal%20Soroni%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1756659428250!5m2!1sen!2sbd"
                                         width="100%" 
                                         height="100%" 
                                         style={{ border: 0 }} 

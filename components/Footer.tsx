@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm text-gray-300">
               <li className="flex items-start">
                 <span className="mr-2 mt-1">📍</span>
-                <span>123 Education Lane, Global City, 10001</span>
+                <span> Amtola, 60 Feet, Mirpur-1216</span>
               </li>
               <li className="flex items-center">
                 <span className="mr-2">📧</span>
@@ -163,7 +163,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-brand-secondary transition-colors"
                 >
-                  info@igfs.com
+                  intguideforstudents@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
@@ -172,7 +172,7 @@ const Footer: React.FC = () => {
                   href="tel:+1234567890"
                   className="hover:text-brand-secondary transition-colors"
                 >
-                  +1 (234) 567-890
+                  +88 (01835-152037)
                 </a>
               </li>
             </ul>
