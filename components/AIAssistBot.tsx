@@ -1,103 +1,123 @@
 /// <reference types="vite/client" />
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChatIcon, XIcon, ArrowRightIcon } from './icons';
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChatIcon, XIcon, ArrowRightIcon } from "./icons";
 
 type Message = {
-  sender: 'user' | 'bot';
+  sender: "user" | "bot";
   text: string;
 };
 
 const AIAssistBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showQuickReplies, setShowQuickReplies] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
 
-  const quickReplies = ["Looking for Study Abroad", "IELTS", "Event / Fair Information"];
+  const quickReplies = [
+    "Looking for Study Abroad",
+    "IELTS",
+    "Event / Fair Information",
+  ];
 
-  // Start conversation once when the panel opens
+  // ✅ Scroll to bottom when messages update
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading, showQuickReplies]);
+
+  // ✅ Start conversation when chat opens
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      const startConversation = async () => {
-        setIsLoading(true);
-        setShowQuickReplies(false);
-        setMessages([{ sender: 'bot', text: '...' }]);
-
-        try {
-          const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              message: "Hello, please introduce yourself and greet me.",
-              history: [],
-              system:
-                "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'. Your goal is to answer questions about studying abroad, IGFS services, destinations (USA, South Korea, Italy), and the application process. Keep answers helpful and concise. Do not reveal you are a language model."
-            })
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || 'Failed to fetch');
-          setMessages([{ sender: 'bot', text: data.reply }]);
-          setError(null);
-        } catch (err: any) {
-          console.error("Error starting conversation:", err);
-          setMessages([{ sender: 'bot', text: 'Sorry, I am having trouble connecting. Please try again later.' }]);
-          setError(err.message);
-        } finally {
-          setIsLoading(false);
-          setShowQuickReplies(true);
-          if (showBadge) setShowBadge(false);
-        }
-      };
-
       startConversation();
+      if (showBadge) setShowBadge(false);
     }
   }, [isOpen]);
 
-  // Auto scroll to bottom
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isLoading, showQuickReplies]);
+  // ✅ Start conversation with backend
+  const startConversation = async () => {
+    setIsLoading(true);
+    setShowQuickReplies(false);
+    setMessages([{ sender: "bot", text: "" }]);
 
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: "Hello, please introduce yourself and greet me.",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+
+      const data = await res.json();
+      if (data.error) {
+        throw new Error(data.details || data.error);
+      }
+
+      setMessages([{ sender: "bot", text: data.reply || "..." }]);
+      setError(null);
+    } catch (err: any) {
+      console.error("Error starting conversation:", err);
+      setError("Could not connect to AI Assistant. Please try again later.");
+      setMessages([
+        {
+          sender: "bot",
+          text: "Sorry, I am having trouble connecting right now.",
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+      setShowQuickReplies(true);
+    }
+  };
+
+  // ✅ Send message to backend
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim() || isLoading) return;
-    setShowQuickReplies(false);
 
-    const userMessage: Message = { sender: 'user', text: messageText };
-    setMessages((prev) => [...prev, userMessage, { sender: 'bot', text: '...' }]);
+    setShowQuickReplies(false);
+    const userMessage: Message = { sender: "user", text: messageText };
+    setMessages((prev) => [...prev, userMessage, { sender: "bot", text: "" }]);
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: messageText,
-          history: messages,
-          system:
-            "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'."
-        })
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: messageText }),
       });
+
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Request failed');
+      if (data.error) {
+        throw new Error(data.details || data.error);
+      }
 
       setMessages((prev) => {
         const newMessages = [...prev];
-        newMessages[newMessages.length - 1].text = data.reply;
+        newMessages[newMessages.length - 1].text = data.reply || "...";
         return newMessages;
       });
+      setError(null);
     } catch (err: any) {
       console.error("Error sending message:", err);
+      setError("Failed to send message. Please try again.");
       setMessages((prev) => {
         const newMessages = [...prev];
-        newMessages[newMessages.length - 1].text = 'Sorry, something went wrong. Please try again.';
+        newMessages[newMessages.length - 1].text =
+          "Sorry, something went wrong. Please try again.";
         return newMessages;
       });
-      setError(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -106,7 +126,7 @@ const AIAssistBot: React.FC = () => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     sendMessage(input);
-    setInput('');
+    setInput("");
   };
 
   const handleQuickReplyClick = (reply: string) => sendMessage(reply);
@@ -127,7 +147,9 @@ const AIAssistBot: React.FC = () => {
             {showBadge && (
               <span className="absolute -top-1 -right-1 flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 justify-center items-center text-white text-xs">1</span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 justify-center items-center text-white text-xs">
+                  1
+                </span>
               </span>
             )}
           </motion.button>
@@ -141,7 +163,7 @@ const AIAssistBot: React.FC = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed bottom-24 right-6 w-[calc(100vw-3rem)] max-w-sm h-[70vh] max-h-[600px] bg-white dark:bg-gray-800 rounded-2xl shadow-2xl flex flex-col z-[55] overflow-hidden border border-gray-200 dark:border-gray-700"
           >
             <header className="bg-brand-primary text-white p-4 flex items-center justify-between">
@@ -170,16 +192,20 @@ const AIAssistBot: React.FC = () => {
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${
+                      msg.sender === "user" ? "justify-end" : "justify-start"
+                    }`}
                   >
                     <div
                       className={`max-w-[80%] p-3 rounded-2xl ${
-                        msg.sender === 'user'
-                          ? 'bg-brand-secondary text-brand-primary rounded-br-none'
-                          : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-bl-none'
+                        msg.sender === "user"
+                          ? "bg-brand-secondary text-brand-primary rounded-br-none"
+                          : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-bl-none"
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-wrap">{msg.text || '...'}</p>
+                      <p className="text-sm whitespace-pre-wrap">
+                        {msg.text || "..."}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -205,7 +231,11 @@ const AIAssistBot: React.FC = () => {
                 )}
 
                 {isLoading && (
-                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
                     <div className="p-3 rounded-2xl bg-gray-200 dark:bg-gray-700 rounded-bl-none flex items-center space-x-2">
                       <span className="block w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
                       <span className="block w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
@@ -213,6 +243,7 @@ const AIAssistBot: React.FC = () => {
                     </div>
                   </motion.div>
                 )}
+
                 <div ref={messagesEndRef} />
               </div>
             </div>
