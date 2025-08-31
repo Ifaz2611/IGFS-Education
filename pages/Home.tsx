@@ -279,78 +279,91 @@ const Home: React.FC = () => {
             
             {/* Destinations Section */}
             <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Popular destinations">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Popular Destinations</h2>
-                    <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Explore top-tier education in countries that offer unique cultural and academic experiences.
-                    </p>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Popular Destinations</h2>
+                <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Explore top-tier education in countries that offer unique cultural and academic experiences.
+                </p>
+
+                <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={staggerContainer}
+                className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8"
+                >
+                {[
+                    {
+                    name: 'United States',
+                    key: 'USA', // Must match DestinationKey
+                    img: '/images/destinations/usa.jpg',
+                    title: 'United States: Where opportunities thrive',
+                    description:
+                        'Unleash your potential at top-ranked universities, with cutting-edge resources and a dynamic environment that empowers you to achieve your dreams.',
+                    },
+                    {
+                    name: 'South Korea',
+                    key: 'South Korea', // Must match DestinationKey
+                    img: '/images/destinations/south-korea.jpg',
+                    title: 'South Korea: Innovation meets tradition',
+                    description:
+                        'Immerse yourself in a tech-forward society with world-class education in engineering and arts, all while experiencing a rich cultural heritage.',
+                    },
+                    {
+                    name: 'Italy',
+                    key: 'Italy', // Must match DestinationKey
+                    img: '/images/destinations/italy.jpg',
+                    title: 'Italy: A legacy of art and culture',
+                    description:
+                        'Study amidst timeless masterpieces. Italy offers unparalleled education in design, architecture, and humanities in the heart of history.',
+                    },
+                ].map((dest) => (
                     <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={staggerContainer}
-                        className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                name: 'United States',
-                                img: '/images/destinations/usa.jpg',
-                                title: 'United States: Where opportunities thrive',
-                                description: 'Unleash your potential at top-ranked universities, with cutting-edge resources and a dynamic environment that empowers you to achieve your dreams.',
-                                link: '/destinations',
-                            },
-                            {
-                                name: 'South Korea',
-                                img: '/images/destinations/south-korea.jpg',
-                                title: 'South Korea: Innovation meets tradition',
-                                description: 'Immerse yourself in a tech-forward society with world-class education in engineering and arts, all while experiencing a rich cultural heritage.',
-                                link: '/destinations',
-                            },
-                            {
-                                name: 'Italy',
-                                img: '/images/destinations/italy.jpg',
-                                title: 'Italy: A legacy of art and culture',
-                                description: 'Study amidst timeless masterpieces. Italy offers unparalleled education in design, architecture, and humanities in the heart of history.',
-                                link: '/destinations',
-                            },   
-                        ].map(dest => (
-                            <motion.div
-                                key={dest.name}
-                                variants={fadeInUp}
-                                className="relative rounded-xl shadow-lg overflow-hidden group w-full aspect-video"
-                                whileHover="hover"
-                                aria-label={`Study in ${dest.name}`}
-                            >
-                                <img
-                                    src={dest.img}
-                                    alt={dest.name}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                                <div className="absolute bottom-0 left-0 p-6">
-                                    <h3 className="text-white text-2xl font-bold">{dest.name}</h3>
-                                </div>
-                                <motion.div
-                                    className="absolute inset-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center border-4 border-blue-500 dark:border-blue-400 rounded-xl"
-                                    initial={{ opacity: 0 }}
-                                    variants={{
-                                        hover: { opacity: 1 }
-                                    }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <h4 className="text-2xl font-bold text-blue-700 dark:text-blue-400">{dest.title}</h4>
-                                    <p className="mt-2 text-gray-600 dark:text-gray-300">{dest.description}</p>
-                                    <Link 
-                                        to={dest.link} 
-                                        className="mt-4 bg-blue-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors"
-                                        aria-label={`Study in ${dest.name}`}
-                                    >
-                                        Study in {dest.name}
-                                    </Link>
-                                </motion.div>
-                            </motion.div>
-                        ))}
+                    key={dest.name}
+                    variants={fadeInUp}
+                    className="relative rounded-xl shadow-lg overflow-hidden group w-full aspect-video"
+                    whileHover="hover"
+                    aria-label={`Study in ${dest.name}`}
+                    >
+                    {/* Background Image */}
+                    <img
+                        src={dest.img}
+                        alt={dest.name}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                    />
+
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+
+                    {/* Title on Image */}
+                    <div className="absolute bottom-0 left-0 p-6">
+                        <h3 className="text-white text-2xl font-bold">{dest.name}</h3>
+                    </div>
+
+                    {/* Hover Popup Card */}
+                    <motion.div
+                        className="absolute inset-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center border-4 border-blue-500 dark:border-blue-400 rounded-xl"
+                        initial={{ opacity: 0 }}
+                        variants={{
+                        hover: { opacity: 1 },
+                        }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <h4 className="text-2xl font-bold text-blue-700 dark:text-blue-400">{dest.title}</h4>
+                        <p className="mt-2 text-gray-600 dark:text-gray-300">{dest.description}</p>
+                        <Link
+                        to="/destinations"
+                        state={{ destination: dest.key }} //  Critical: Pass the correct destination key
+                        className="mt-4 bg-blue-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300"
+                        aria-label={`Study in ${dest.name}`}
+                        >
+                        Study in {dest.name}
+                        </Link>
                     </motion.div>
-                </div>
+                    </motion.div>
+                ))}
+                </motion.div>
+            </div>
             </section>
 
             {/* Process Section */}
