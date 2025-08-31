@@ -406,10 +406,44 @@ const SouthKoreaContent: React.FC = () => (
         <li>Study Plan or Personal Statement</li>
         <li>Proof of Accommodation</li>
       </ul>
-      <Link to="/contact" className="mt-8 inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
-        Help me study in South Korea
-      </Link>
     </div>
+
+    {/* === NEW: Partnership with Dong-Eui University === */}
+    <div className="mt-16 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 p-6 rounded-xl shadow-lg border border-blue-100 dark:border-gray-700">
+      <h3 className="text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 flex items-center">
+        <span>🎓</span>
+        <span className="ml-2">Official Partnership with Dong-Eui University</span>
+      </h3>
+      <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+        We are proud to announce our official academic partnership with <strong>Dong-Eui University</strong>, one of South Korea's leading institutions located in Busan. This collaboration opens exclusive pathways for international students to gain admission, access scholarships, and receive dedicated support throughout their academic journey.
+      </p>
+      <ul className="mt-4 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
+        <li><strong>Direct Admission Support:</strong> Streamlined application process through our partnership.</li>
+        <li><strong>Scholarship Opportunities:</strong> Special tuition waivers and living expense support for eligible students.</li>
+        <li><strong>Dedicated Mentorship:</strong> Pre-departure guidance, airport pickup, and orientation program.</li>
+        <li><strong>Korean Language Training:</strong> Access to intensive language courses to help you adapt quickly.</li>
+      </ul>
+
+      <div className="mt-6 flex flex-col md:flex-row items-center gap-6">
+        <img
+          src="/images/Partnership/Dong-ui.jpeg"
+          alt="Dong-Eui University, Busan, South Korea"
+          className="w-full md:w-1/3 h-auto rounded-lg shadow-md object-cover"
+        />
+        <div className="flex-1">
+          <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+            Dong-Eui University is known for its strong programs in Engineering, IT, Business, and Korean Language & Culture.
+          </p>
+        </div>
+      </div>
+    </div>
+    {/* === END Partnership Section === */}
+
+    {/* Optional: Keep original CTA or remove it */}
+    {/* If you want to remove the original CTA, delete the one below */}
+    <Link to="/contact" className="mt-8 inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:bg-blue-700 transition duration-300">
+      Help me study in South Korea
+    </Link>
   </motion.div>
 );
 
