@@ -409,42 +409,64 @@ const Home: React.FC = () => {
             <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Success stories">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Success Stories</h2>
+                    
+                    {/* Update this message once real stories are available */}
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Don't just take our word for it. See what our students have to say about their experience with IGFS.
+                        Inspiring journeys from our students are on the way. Stay tuned for real stories of dreams turning into degrees.
                     </p>
+
+                    {/* ====================================== */}
+                    {/* 🔜 COMING SOON MESSAGE (Keep until real stories are ready) */}
+                    {/* ====================================== */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mt-12 bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg max-w-xl mx-auto"
+                    >
+                        <h3 className="text-2xl font-semibold text-brand-primary dark:text-blue-400">Coming Soon</h3>
+                        <p className="mt-4 text-gray-600 dark:text-gray-300">
+                            Our students are achieving great things around the world. Their inspiring journeys will be shared here very soon!
+                        </p>
+                    </motion.div>
+
+                    {/* ====================================== */}
+                    {/* ✅ FUTURE: UNCOMMENT BELOW WHEN REAL SUCCESS STORIES ARE READY */}
+                    {/* ====================================== */}
+                    {/* 
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                         variants={staggerContainer}
-                        className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                        className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8"
+                    >
                         {[
                             { 
                                 name: 'Priya Sharma', 
                                 country: 'USA', 
                                 quote: "IGFS made my dream of studying in the US a reality. Their personalized guidance was invaluable.", 
-                                img: 'https://picsum.photos/id/1027/100/100'  
-                                                                            
-                                                                            /// If you want to add localy photo then 
-                                                                             /// 1st download to public then /images/priya.jpg 
+                                img: '/images/students/priya-sharma.jpg' // Local image example
                             },
                             { 
                                 name: 'Jin-Woo Park', 
                                 country: 'South Korea', 
                                 quote: "The team's expertise in Korean universities was amazing. They helped me get into my top choice program.", 
-                                img: 'https://picsum.photos/id/1005/100/100' 
+                                img: '/images/students/jin-woo-park.jpg'
                             },
                             { 
                                 name: 'Marco Rossi', 
                                 country: 'Italy', 
                                 quote: "From application to visa, IGFS was there every step. I couldn't have done it without them. Grazie!", 
-                                img: 'https://picsum.photos/id/1011/100/100' 
+                                img: '/images/students/marco-rossi.jpg'
                             },
                         ].map((story, index) => (
                             <motion.div
                                 key={story.name}
                                 variants={slideInFrom(index === 1 ? 'right' : 'left')}
-                                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
+                                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center"
+                            >
                                 <motion.img
                                     initial={{ scale: 0.5, opacity: 0 }}
                                     whileInView={{ scale: 1, opacity: 1 }}
@@ -460,12 +482,15 @@ const Home: React.FC = () => {
                             </motion.div>
                         ))}
                     </motion.div>
-                    <Link 
+                    */}
+
+                    {/* CTA Button – will navigate to /success-stories (which also shows Coming Soon for now) */}
+                    {/* <Link 
                         to="/success-stories" 
                         className="mt-12 inline-flex items-center bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition duration-300"
                         aria-label="Read more success stories">
                         Read More Stories <ArrowRightIcon className="ml-2 h-5 w-5" />
-                    </Link>
+                    </Link> */}
                 </div>
             </section>
             
