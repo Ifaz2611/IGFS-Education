@@ -33,7 +33,8 @@ const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-20">
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center space-x-2">
-                <img className="h-10 w-10 bg-white dark:bg-gray-200 rounded-full p-1" src="/logo.png" alt="IGFS Logo" />
+                 {/* Logo here  */}
+                <img className="h-10 w-10 bg-white dark:bg-gray-200 rounded-full p-1" src="/images/Logo/IGFS_X.jpeg" alt="IGFS Logo" />   
                 <span className="text-white text-2xl font-bold">IGFS</span>
               </Link>
             </div>

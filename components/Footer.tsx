@@ -19,7 +19,8 @@ const Footer: React.FC = () => {
             <div className="flex items-center space-x-2 mb-4">
               <img
                 className="h-10 w-10 bg-white rounded-full p-1"
-                src="/logo.png"
+                // logo here
+                src="/images/Logo/IGFS_X.jpeg"
                 alt="IGFS Logo"
               />
               <span className="text-white text-2xl font-bold">IGFS</span>
