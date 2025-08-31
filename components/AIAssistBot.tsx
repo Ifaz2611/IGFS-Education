@@ -1,6 +1,6 @@
+/// <reference types="vite/client" />
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GoogleGenAI, Chat } from '@google/genai';
 import { ChatIcon, XIcon, ArrowRightIcon } from './icons';
 
 type Message = {
@@ -14,90 +14,90 @@ const AIAssistBot: React.FC = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const chatInstance = useRef<Chat | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [showQuickReplies, setShowQuickReplies] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
 
   const quickReplies = ["Looking for Study Abroad", "IELTS", "Event / Fair Information"];
 
+  // Start conversation once when the panel opens
   useEffect(() => {
-    if (isOpen && !chatInstance.current) {
-      try {
-        if (!process.env.API_KEY) throw new Error("API_KEY is not set.");
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        chatInstance.current = ai.chats.create({
-          model: 'gemini-2.5-flash',
-          config: {
-            systemInstruction:
-              "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'. Your goal is to answer questions about studying abroad, the services IGFS offers, destinations like the USA, South Korea, and Italy, and the application process. Keep your answers helpful and relatively concise. Do not reveal you are a language model. Start the conversation with a friendly greeting and ask what the user needs help with.",
-          },
-        });
-        setError(null);
-      } catch (e) {
-        console.error("Failed to initialize AI Assistant:", e);
-        setError("Could not initialize AI Assistant. API key might be missing.");
-        return;
-      }
-
+    if (isOpen && messages.length === 0) {
       const startConversation = async () => {
         setIsLoading(true);
         setShowQuickReplies(false);
-        setMessages([{ sender: 'bot', text: '' }]);
+        setMessages([{ sender: 'bot', text: '...' }]);
+
         try {
-          const response = await chatInstance.current!.sendMessageStream({
-            message: "Hello, please introduce yourself and greet me.",
+          const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              message: "Hello, please introduce yourself and greet me.",
+              history: [],
+              system:
+                "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'. Your goal is to answer questions about studying abroad, IGFS services, destinations (USA, South Korea, Italy), and the application process. Keep answers helpful and concise. Do not reveal you are a language model."
+            })
           });
-          let botResponse = '';
-          for await (const chunk of response) {
-            botResponse += chunk.text;
-            setMessages([{ sender: 'bot', text: botResponse }]);
-          }
-        } catch (e) {
-          console.error("Error starting conversation:", e);
-          setMessages([
-            { sender: 'bot', text: 'Sorry, I am having trouble connecting. Please try again later.' },
-          ]);
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to fetch');
+          setMessages([{ sender: 'bot', text: data.reply }]);
+          setError(null);
+        } catch (err: any) {
+          console.error("Error starting conversation:", err);
+          setMessages([{ sender: 'bot', text: 'Sorry, I am having trouble connecting. Please try again later.' }]);
+          setError(err.message);
         } finally {
           setIsLoading(false);
           setShowQuickReplies(true);
+          if (showBadge) setShowBadge(false);
         }
       };
 
-      if (messages.length === 0) startConversation();
-      if (showBadge) setShowBadge(false);
+      startConversation();
     }
-  }, [isOpen, showBadge, messages.length]);
+  }, [isOpen]);
 
+  // Auto scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading, showQuickReplies]);
 
   const sendMessage = async (messageText: string) => {
-    if (!messageText.trim() || isLoading || !chatInstance.current) return;
+    if (!messageText.trim() || isLoading) return;
     setShowQuickReplies(false);
+
     const userMessage: Message = { sender: 'user', text: messageText };
-    setMessages((prev) => [...prev, userMessage, { sender: 'bot', text: '' }]);
+    setMessages((prev) => [...prev, userMessage, { sender: 'bot', text: '...' }]);
     setIsLoading(true);
 
     try {
-      const stream = await chatInstance.current.sendMessageStream({ message: messageText });
-      let botResponse = '';
-      for await (const chunk of stream) {
-        botResponse += chunk.text;
-        setMessages((prev) => {
-          const newMessages = [...prev];
-          newMessages[newMessages.length - 1].text = botResponse;
-          return newMessages;
-        });
-      }
-    } catch (e) {
-      console.error("Error sending message:", e);
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: messageText,
+          history: messages,
+          system:
+            "You are a friendly and helpful AI assistant for IGFS (International Guide for Students). Your name is 'IGFS Guide'."
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Request failed');
+
+      setMessages((prev) => {
+        const newMessages = [...prev];
+        newMessages[newMessages.length - 1].text = data.reply;
+        return newMessages;
+      });
+    } catch (err: any) {
+      console.error("Error sending message:", err);
       setMessages((prev) => {
         const newMessages = [...prev];
         newMessages[newMessages.length - 1].text = 'Sorry, something went wrong. Please try again.';
         return newMessages;
       });
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -113,7 +113,7 @@ const AIAssistBot: React.FC = () => {
 
   return (
     <>
-      {/* ✅ Floating Chat Button (only when closed) */}
+      {/* ✅ Floating Chat Button */}
       {!isOpen && (
         <div className="fixed bottom-20 right-6 z-[60]">
           <motion.button
@@ -149,7 +149,6 @@ const AIAssistBot: React.FC = () => {
                 <h3 className="font-bold text-lg">IGFS AI Assistant</h3>
                 <p className="text-sm text-gray-200">Your study abroad guide</p>
               </div>
-              {/* ❌ Close button inside header */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 hover:bg-white/20 rounded-full transition"
@@ -160,30 +159,30 @@ const AIAssistBot: React.FC = () => {
 
             <div className="flex-grow p-4 overflow-y-auto bg-gray-50 dark:bg-gray-900">
               <div className="space-y-4">
-                {error ? (
+                {error && (
                   <div className="p-3 rounded-lg bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 text-sm">
                     <strong>Error:</strong> {error}
                   </div>
-                ) : (
-                  messages.map((msg, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div
-                        className={`max-w-[80%] p-3 rounded-2xl ${
-                          msg.sender === 'user'
-                            ? 'bg-brand-secondary text-brand-primary rounded-br-none'
-                            : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-bl-none'
-                        }`}
-                      >
-                        <p className="text-sm whitespace-pre-wrap">{msg.text || '...'}</p>
-                      </div>
-                    </motion.div>
-                  ))
                 )}
+
+                {messages.map((msg, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div
+                      className={`max-w-[80%] p-3 rounded-2xl ${
+                        msg.sender === 'user'
+                          ? 'bg-brand-secondary text-brand-primary rounded-br-none'
+                          : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-bl-none'
+                      }`}
+                    >
+                      <p className="text-sm whitespace-pre-wrap">{msg.text || '...'}</p>
+                    </div>
+                  </motion.div>
+                ))}
 
                 {showQuickReplies && !isLoading && (
                   <motion.div
@@ -205,7 +204,7 @@ const AIAssistBot: React.FC = () => {
                   </motion.div>
                 )}
 
-                {isLoading && messages.length > 0 && (
+                {isLoading && (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-start">
                     <div className="p-3 rounded-2xl bg-gray-200 dark:bg-gray-700 rounded-bl-none flex items-center space-x-2">
                       <span className="block w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
