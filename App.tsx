@@ -9,7 +9,7 @@ import ScrollToTop from './components/ScrollToTop';
 import SettingsPanel from './components/SettingsPanel';
 import AIAssistBot from './components/AIAssistBot';
 import NewsTicker from './components/NewsTicker';
-import MouseTrail from './components/MouseTrail';
+// import MouseTrail from './components/MouseTrail';
 
 // Import pages
 import Home from './pages/Home';
@@ -57,7 +57,7 @@ function AppContent() {
       <WhatsAppButton />
       <SettingsPanel />
       <AIAssistBot />
-      <MouseTrail />
+      {/* <MouseTrail /> */}
     </div>
   );
 }
