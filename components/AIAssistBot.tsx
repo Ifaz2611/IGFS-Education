@@ -18,6 +18,9 @@ const AIAssistBot: React.FC = () => {
   const [showQuickReplies, setShowQuickReplies] = useState(false);
   const [showBadge, setShowBadge] = useState(true);
 
+  // 🔧 API URL configuration
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5174";
+
   const quickReplies = [
     "Looking for Study Abroad",
     "IELTS",
@@ -44,7 +47,7 @@ const AIAssistBot: React.FC = () => {
     setMessages([{ sender: "bot", text: "" }]);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,7 +56,7 @@ const AIAssistBot: React.FC = () => {
       });
 
       if (!res.ok) {
-        throw new Error(`Server error: ${res.status}`);
+        throw new Error(`Server error: ${res.status} - ${res.statusText}`);
       }
 
       const data = await res.json();
@@ -65,11 +68,11 @@ const AIAssistBot: React.FC = () => {
       setError(null);
     } catch (err: any) {
       console.error("Error starting conversation:", err);
-      setError("Could not connect to AI Assistant. Please try again later.");
+      setError(`Could not connect to AI Assistant: ${err.message}`);
       setMessages([
         {
           sender: "bot",
-          text: "Sorry, I am having trouble connecting right now.",
+          text: "Sorry, I am having trouble connecting right now. Please make sure the backend server is running.",
         },
       ]);
     } finally {
@@ -86,16 +89,17 @@ const AIAssistBot: React.FC = () => {
     const userMessage: Message = { sender: "user", text: messageText };
     setMessages((prev) => [...prev, userMessage, { sender: "bot", text: "" }]);
     setIsLoading(true);
+    setError(null); // Clear any previous errors
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: messageText }),
       });
 
       if (!res.ok) {
-        throw new Error(`Server error: ${res.status}`);
+        throw new Error(`Server error: ${res.status} - ${res.statusText}`);
       }
 
       const data = await res.json();
@@ -111,7 +115,7 @@ const AIAssistBot: React.FC = () => {
       setError(null);
     } catch (err: any) {
       console.error("Error sending message:", err);
-      setError("Failed to send message. Please try again.");
+      setError(`Failed to send message: ${err.message}`);
       setMessages((prev) => {
         const newMessages = [...prev];
         newMessages[newMessages.length - 1].text =
