@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@google/genai": "latest",
+    "@google/generative-ai": "^0.24.1",
     "@heroicons/react": "^2.2.0",
+    "cors": "^2.8.5",
     "curl": "^0.1.4",
     "dotenv": "^17.2.1",
+    "express": "^5.1.0",
     "firebase": "^12.2.1",
     "framer-motion": "^11.3.2",
     "react": "^19.1.1",
