@@ -86,7 +86,7 @@ const About: React.FC = () => {
         {/* Image-only header section */}
         <header className="relative flex items-center justify-center w-full aspect-video overflow-hidden">
           <img
-            src="/images/blog/about-us1.jepg" // Update path to your image
+            src="/images/blog/about-us1.jpeg" // Update path to your image
             alt="About hero"
             className="absolute top-0 left-0 w-full h-full object-contain z-0"
           />
@@ -288,7 +288,7 @@ const About: React.FC = () => {
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-8 inline-block">
               <button
-                onClick={() => window.location.href = "/contact"}
+                onClick={() => window.location.href = "/contact"} //path change 
                 className="bg-white text-brand-primary font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition-colors text-lg"
               >
                 Get Started Today
