@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChatIcon, XIcon, ArrowRightIcon } from "./icons";
+import { INITIAL_GREETING_PROMPT, SYSTEM_PROMPTS } from "./chatPrompts";
 
 type Message = {
   sender: "user" | "bot";
@@ -51,7 +52,7 @@ const AIAssistBot: React.FC = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: "Hello, please introduce yourself and greet me.",
+          message: INITIAL_GREETING_PROMPT,
         }),
       });
 
