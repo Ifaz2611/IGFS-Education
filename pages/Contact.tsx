@@ -131,26 +131,28 @@ const Contact: React.FC = () => {
   return (
     <div className="bg-white dark:bg-gray-900 min-h-screen overflow-x-hidden transition-colors duration-300">
       {/* Header */}
-      <header className="bg-brand-light dark:bg-gray-800 text-center py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-extrabold text-brand-primary dark:text-gray-100"
-          >
-            Get in Touch
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-          >
-            We're here to help you on your journey to international education. Reach out with your questions.
-          </motion.p>
-        </div>
-      </header>
+      <header className="bg-white dark:bg-gray-800 text-center py-20">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100"
+    >
+      Get in Touch
+    </motion.h1>
+
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+      className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
+    >
+      We're here to help you on your journey to international education. Reach out with your questions.
+    </motion.p>
+  </div>
+</header>
+
 
       {/* Form Section */}
       <section className="py-20 bg-cyan-50 dark:bg-gray-800">

@@ -8,7 +8,7 @@ interface NewsTickerProps {
 
 const TickerText: React.FC = () => {
     const announcements = [
-        "Fall 2024 admissions are now open for USA, South Korea, and Italy!",
+        "Fall 2025 admissions are now open for USA, South Korea, and Italy!",
         "Book a free virtual counselling session with our experts this week.",
         "New scholarships announced for STEM programs in South Korea.",
         "IGFS wishes all students the best for their upcoming exams!",

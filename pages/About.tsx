@@ -140,15 +140,12 @@ const About: React.FC = () => {
               <div className="w-1/3 h-1 bg-brand-secondary mt-3 rounded-full"></div>
             </h2>
             <p className="mt-6 text-gray-600 dark:text-gray-300 leading-relaxed">
-              Founded in 2010, the International Guide for Students (IGFS) began with a simple idea: every student
+              Founded in 2023, the International Guide for Students (IGFS) began with a simple idea: every student
               deserves a chance to pursue their dream education, regardless of their background. What started as a
               small advisory service has grown into a global consultancy with partners across three continents.
             </p>
             <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
-              Our journey has been fueled by the success stories of thousands of students we've guided, each one
-              reinforcing our commitment to excellence and integrity. We believe that studying abroad is more than
-              just an academic pursuit—it's a transformative experience that shapes character, builds resilience, and
-              opens doors to a world of possibilities.
+             Our journey is just beginning, but we're driven by a clear vision—to guide students toward life-changing experiences abroad. We believe that studying overseas is more than just an academic goal; it's a transformative journey that builds character, fosters resilience, and unlocks a world of possibilities. With integrity and a commitment to excellence, we’re ready to shape countless success stories in the years to come.
             </p>
 
             <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 italic">
