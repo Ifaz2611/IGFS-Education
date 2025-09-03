@@ -16,7 +16,7 @@ const About: React.FC = () => {
       name: 'Arnob Mallick Mandela',
       title: 'Team Member',
       img: '/images/aboutus1/arnob.jpeg',
-      bio: '',
+      bio: 'Click For More Details',
       fullBio:
         'Hi everyone. I am currently majoring in Environmental Science at the City University of New York, with a strong interest in sustainability, climate change, and ecological research. My academic journey is focused on developing practical solutions to pressing environmental challenges, while building expertise in areas such as renewable energy, environmental policy, and conservation strategies. I am passionate about applying scientific knowledge to create a positive impact on communities and the natural world.',
     },
@@ -24,7 +24,7 @@ const About: React.FC = () => {
       name: 'Md. Shohidul Islam Sumon',
       title: 'Team Member',
       img: '/images/aboutus1/sumon.jpeg',
-      bio: '',
+      bio: 'Click For More Details',
       fullBio:
         'Hi everyone. I am studying in the Department of Folklore and Social Development Studies at the University of Rajshahi, with a keen interest in culture, society, and community development. My focus is on exploring the role of folklore in shaping social progress and sustainable development.',
     },
@@ -32,7 +32,7 @@ const About: React.FC = () => {
       name: 'Md. Asiqur Rahman Santo',
       title: 'Team Member',
       img: '/images/aboutus1/santo.jpeg',
-      bio: '',
+      bio: 'Click For More Details',
       fullBio:
         'Hi . I am pursuing a degree in Computer Information Systems at the City University of New York, USA, with a strong interest in technology, data management, and innovative digital solutions. My focus is on building practical skills in information systems to contribute to modern business and technology-driven environments.',
     },
@@ -40,7 +40,7 @@ const About: React.FC = () => {
       name: 'Md Abdul Auwal',
       title: 'Team Member',
       img: '/images/aboutus1/abdul.jpeg',
-      bio: '',
+      bio: 'Click For More Details',
       fullBio:
         'Hi . I am pursuing a Double Major in Global Business Administration and Global Hospitality Management at Kyungsung University, Busan, South Korea. My academic focus combines international business strategies with global hospitality practices, preparing me to contribute to cross-cultural industries and dynamic global markets.',
     },
