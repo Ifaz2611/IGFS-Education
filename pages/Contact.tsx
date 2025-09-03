@@ -97,6 +97,7 @@ const Contact: React.FC = () => {
     try {
       await addDoc(collection(db, 'contacts'), {
         ...formData,
+        countryCode: formData.countryCode, // Explicitly include
         fullName: `${formData.firstName} ${formData.lastName}`.trim(),
         fullPhoneNumber: `${formData.countryCode} ${formData.phoneNumber}`.trim(),
         timestamp: serverTimestamp(),
