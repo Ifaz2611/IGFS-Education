@@ -84,7 +84,7 @@ const Services: React.FC = () => {
                 "Personalized shortlisting to save you time and effort.",
                 "Expert advice on emerging fields and career prospects."
             ],
-            image: "/images/destinations/usa.jpg"
+            image: "/images/Services/uni1.jpeg"
         },
         {
             title: "Application & SOP Assistance",
@@ -94,7 +94,7 @@ const Services: React.FC = () => {
                 "Guidance on writing impactful essays and SOPs.",
                 "Review by experts to enhance your application's quality."
             ],
-            image: "/images/destinations/usa.jpg"
+            image: "/images/Services/sop1.jpeg"
         },
         {
             title: "Scholarship & Financial Guidance",
@@ -104,7 +104,7 @@ const Services: React.FC = () => {
                 "Assistance with scholarship application essays.",
                 "Advice on financial planning and documentation."
             ],
-            image: "/images/destinations/usa.jpg"
+            image: "/images/Services/sco1.jpeg"
         },
         {
             title: "Visa & Immigration Support",
@@ -114,7 +114,7 @@ const Services: React.FC = () => {
                 "Thorough documentation checks to avoid rejections.",
                 "Mock interview preparation to build your confidence."
             ],
-            image: "/images/destinations/usa.jpg"
+            image: "/images/Services/Visa1.jpeg"
         }
     ];
 
