@@ -13,45 +13,45 @@ const About: React.FC = () => {
   // Extended team members with fullBio
   const teamMembers: TeamMember[] = [
     {
-      name: 'Dr. Evelyn Reed',
-      title: 'Founder & Chief Mentor',
-      img: 'https://picsum.photos/id/1027/200/200',
-      bio: 'With over 20 years in international education, Dr. Reed founded IGFS to make global learning accessible to all.',
+      name: 'Arnob Mallick Mandela',
+      title: 'Team Member',
+      img: '/images/aboutus1/arnob.jpeg',
+      bio: '',
       fullBio:
-        'Dr. Evelyn Reed is a renowned expert in international education policy and student mobility. With a Ph.D. in Comparative Education from Columbia University, she has advised governments and institutions across Asia and Africa. Her passion for equity in education led her to establish IGFS in 2010. Under her leadership, IGFS has helped over 5,000 students secure admissions to top universities worldwide. When not mentoring students, Evelyn enjoys hiking and mentoring young education entrepreneurs.',
+        'Hi everyone. I am currently majoring in Environmental Science at the City University of New York, with a strong interest in sustainability, climate change, and ecological research. My academic journey is focused on developing practical solutions to pressing environmental challenges, while building expertise in areas such as renewable energy, environmental policy, and conservation strategies. I am passionate about applying scientific knowledge to create a positive impact on communities and the natural world.',
     },
     {
-      name: 'David Chen',
-      title: 'Head of Operations, USA',
-      img: 'https://picsum.photos/id/1005/200/200',
-      bio: 'An alumnus of Stanford, David specializes in US university admissions and scholarship strategies.',
+      name: 'Md. Shohidul Islam Sumon',
+      title: 'Team Member',
+      img: '/images/aboutus1/sumon.jpeg',
+      bio: '',
       fullBio:
-        'David Chen graduated with honors from Stanford University with a degree in Public Policy. He has spent the last 8 years guiding students through the complex US admissions landscape. David is an expert in financial aid and scholarship applications, having helped students secure over $2M in funding. He believes in data-driven counseling and personalized roadmaps for every student.',
+        'Hi everyone. I am studying in the Department of Folklore and Social Development Studies at the University of Rajshahi, with a keen interest in culture, society, and community development. My focus is on exploring the role of folklore in shaping social progress and sustainable development.',
     },
     {
-      name: 'Sofia Bianchi',
-      title: 'European Destinations Lead',
-      img: 'https://picsum.photos/id/1011/200/200',
-      bio: 'Based in Rome, Sofia has extensive knowledge of European education systems and visa processes.',
+      name: 'Md. Asiqur Rahman Santo',
+      title: 'Team Member',
+      img: '/images/aboutus1/santo.jpeg',
+      bio: '',
       fullBio:
-        'Sofia holds a Master’s in International Education from Sapienza University of Rome. She has lived and worked in five European countries and speaks four languages fluently. She specializes in applications to Italy, Germany, France, and the Netherlands, with deep expertise in language requirements and credential evaluation. A passionate traveler, Sofia loves helping students find the perfect cultural fit.',
+        'Hi . I am pursuing a degree in Computer Information Systems at the City University of New York, USA, with a strong interest in technology, data management, and innovative digital solutions. My focus is on building practical skills in information systems to contribute to modern business and technology-driven environments.',
     },
     {
-      name: 'Kenji Tanaka',
-      title: 'Asia-Pacific Advisor',
-      img: 'https://picsum.photos/id/1012/200/200',
-      bio: 'Kenji helps students navigate the unique academic landscapes of South Korea, Japan, and Australia.',
+      name: 'Md Abdul Auwal',
+      title: 'Team Member',
+      img: '/images/aboutus1/abdul.jpeg',
+      bio: '',
       fullBio:
-        'Kenji Tanaka holds a degree in Cross-Cultural Communication from Waseda University. He has worked with education agencies in Seoul, Tokyo, and Sydney. He is passionate about helping students adapt to the academic rigor and cultural expectations of Asian institutions. In his free time, Kenji teaches Japanese language workshops and practices calligraphy.',
+        'Hi . I am pursuing a Double Major in Global Business Administration and Global Hospitality Management at Kyungsung University, Busan, South Korea. My academic focus combines international business strategies with global hospitality practices, preparing me to contribute to cross-cultural industries and dynamic global markets.',
     },
-    {
-      name: 'Maria Santos',
-      title: 'Student Success Manager',
-      img: 'https://picsum.photos/id/1027/200/200',
-      bio: 'Maria ensures every student receives personalized support throughout their journey.',
-      fullBio:
-        'Maria has a background in counseling psychology and has supported students from over 30 countries. She oversees the post-admission process, including visa preparation, pre-departure orientation, and mental wellness support. Maria believes that emotional readiness is just as important as academic readiness.',
-    },
+    // {
+    //   name: 'Maria Santos',
+    //   title: 'Student Success Manager',
+    //   img: 'https://picsum.photos/id/1027/200/200',
+    //   bio: 'Maria ensures every student receives personalized support throughout their journey.',
+    //   fullBio:
+    //     'Maria has a background in counseling psychology and has supported students from over 30 countries. She oversees the post-admission process, including visa preparation, pre-departure orientation, and mental wellness support. Maria believes that emotional readiness is just as important as academic readiness.',
+    // },
   ];
 
   // State to track selected team member
