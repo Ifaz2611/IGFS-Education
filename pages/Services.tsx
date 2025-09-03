@@ -1,71 +1,81 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
-import { CheckCircleIcon } from '@heroicons/react/24/solid'; // fixed import
-
-
-type CaseStudy = {
-    name: string;
-    story: string;
-};
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
 type ServiceCardProps = {
     title: string;
     description: string;
     benefits: string[];
-    caseStudy: CaseStudy;
     image: string;
     reverse?: boolean;
 };
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, benefits, caseStudy, image, reverse = false }) => {
-    const slideInVariant: Variants = {
-        hidden: { opacity: 0, x: reverse ? 50 : -50 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-    };
-    
-    const scaleInVariant: Variants = {
-        hidden: { opacity: 0, scale: 0.9 },
-        visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } }
-    };
+// Reusable variant generators
+const createSlideInVariant = (reverse: boolean): Variants => ({
+    hidden: { opacity: 0, x: reverse ? 50 : -50 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { duration: 0.6, ease: 'easeOut' }
+    }
+});
 
+const scaleInVariant: Variants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        transition: { duration: 0.6, ease: 'easeOut' }
+    }
+};
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, benefits, image, reverse = false }) => {
     return (
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20 overflow-hidden">
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={slideInVariant}
-                className={`order-1 ${reverse ? 'md:order-2' : 'md:order-1'}`}>
+                viewport={{ once: true, amount: 0.3, margin: "50px" }}
+                variants={createSlideInVariant(reverse)}
+                className={`order-1 ${reverse ? 'md:order-2' : 'md:order-1'}`}
+            >
                 <h3 className="text-3xl font-bold text-brand-primary dark:text-gray-100">{title}</h3>
                 <p className="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">{description}</p>
                 <ul className="mt-6 space-y-3">
-                    {benefits.map(benefit => (
+                    {benefits.map((benefit) => (
                         <li key={benefit} className="flex items-start">
-                            <CheckCircleIcon className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0" />
+                            <CheckCircleIcon
+                                className="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0"
+                                aria-hidden="true"
+                            />
                             <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
                         </li>
                     ))}
                 </ul>
-                <div className="mt-6 border-l-4 border-brand-secondary pl-4">
-                    <p className="font-semibold text-gray-800 dark:text-gray-200">Case Study: {caseStudy.name}</p>
-                    <p className="text-gray-600 dark:text-gray-400 italic text-sm">"{caseStudy.story}"</p>
-                </div>
             </motion.div>
             <motion.div
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3, margin: "50px" }}
                 variants={scaleInVariant}
-                className={`order-2 ${reverse ? 'md:order-1' : 'md:order-2'}`}>
-                <img src={image} alt={title} className="rounded-lg shadow-xl" />
+                className={`order-2 ${reverse ? 'md:order-1' : 'md:order-2'}`}
+            >
+                <img
+                    src={image}
+                    alt={title}
+                    className="rounded-lg shadow-xl w-full h-auto"
+                    onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/images/fallback.jpg";
+                    }}
+                />
             </motion.div>
         </div>
     );
 };
 
 const Services: React.FC = () => {
-    const services: ServiceCardProps[] = [
+    const services = [
         {
             title: "University & Course Selection",
             description: "Choosing the right university and course is the most critical decision. Our counselors use a data-driven approach, combined with your academic profile, interests, and career goals, to create a tailored list of best-fit institutions.",
@@ -74,11 +84,7 @@ const Services: React.FC = () => {
                 "Personalized shortlisting to save you time and effort.",
                 "Expert advice on emerging fields and career prospects."
             ],
-            caseStudy: { 
-                name: "Ananya, B.Tech in AI", 
-                story: "IGFS helped me discover a specialized AI program in the USA that perfectly matched my passion for robotics. I hadn't even heard of the university before their recommendation!" 
-            },
-            image: "https://picsum.photos/id/26/600/400"
+            image: "/images/Services/uni1.jpeg"
         },
         {
             title: "Application & SOP Assistance",
@@ -88,11 +94,7 @@ const Services: React.FC = () => {
                 "Guidance on writing impactful essays and SOPs.",
                 "Review by experts to enhance your application's quality."
             ],
-            caseStudy: { 
-                name: "Carlos, MBA Applicant", 
-                story: "My application essays were good, but the IGFS review team helped me make them great. Their feedback on my SOP was a game-changer, and I got into my dream business school." 
-            },
-            image: "https://picsum.photos/id/175/600/400"
+            image: "/images/Services/sop1.jpeg"
         },
         {
             title: "Scholarship & Financial Guidance",
@@ -102,11 +104,7 @@ const Services: React.FC = () => {
                 "Assistance with scholarship application essays.",
                 "Advice on financial planning and documentation."
             ],
-            caseStudy: { 
-                name: "Fatima, M.Sc. in Environmental Science", 
-                story: "I was worried about the high tuition fees in Italy. IGFS found a university-specific scholarship that covered 50% of my costs, making my dream affordable." 
-            },
-            image: "https://picsum.photos/id/180/600/400"
+            image: "/images/Services/sco1.jpeg"
         },
         {
             title: "Visa & Immigration Support",
@@ -116,11 +114,7 @@ const Services: React.FC = () => {
                 "Thorough documentation checks to avoid rejections.",
                 "Mock interview preparation to build your confidence."
             ],
-            caseStudy: { 
-                name: "Liam, Ph.D. in History", 
-                story: "The visa interview was my biggest fear. The mock sessions with IGFS were incredibly helpful. I went in confident and prepared, and the process was smooth." 
-            },
-            image: "https://picsum.photos/id/43/600/400"
+            image: "/images/Services/Visa1.jpeg"
         }
     ];
 
@@ -128,14 +122,17 @@ const Services: React.FC = () => {
         <div className="bg-brand-light dark:bg-gray-900 overflow-x-hidden">
             {/* Video-only header section */}
             <header className="relative flex items-center justify-center w-full aspect-video overflow-hidden">
-                <video 
-                    src="/videos/service-hero.mp4" 
-                    autoPlay 
-                    loop 
-                    muted 
+                <video
+                    src="/videos/service-hero.mp4"
+                    autoPlay
+                    loop
+                    muted
                     playsInline
-                    className="absolute top-0 left-0 w-full h-full object-contain z-0"
-                />
+                    aria-hidden="true"
+                    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                >
+                    <img src="/images/fallback-hero.jpg" alt="International education background" className="absolute top-0 left-0 w-full h-full object-cover z-0" />
+                </video>
             </header>
 
             {/* Services Section */}
@@ -157,13 +154,18 @@ const Services: React.FC = () => {
                         transition={{ duration: 0.5 }}
                     >
                         <h2 className="text-3xl font-bold">Ready to Begin Your Success Story?</h2>
-                        <p className="mt-4 max-w-2xl mx-auto text-gray-300">Our services are designed to give you the competitive edge. Let's work together to achieve your academic goals.</p>
+                        <p className="mt-4 max-w-2xl mx-auto text-gray-300">
+                            Our services are designed to give you the competitive edge. Let's work together to achieve your academic goals.
+                        </p>
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="mt-8 inline-block"
                         >
-                            <Link to="/contact" className="inline-block bg-white text-brand-primary font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-opacity-90 transition-colors">
+                            <Link
+                                to="/contact"
+                                className="inline-block bg-white text-gray-900 font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-opacity-90 transition-colors"
+                            >
                                 Book a Free Consultation
                             </Link>
                         </motion.div>
