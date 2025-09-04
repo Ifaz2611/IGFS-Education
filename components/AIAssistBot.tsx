@@ -20,7 +20,7 @@ const AIAssistBot: React.FC = () => {
   const [showBadge, setShowBadge] = useState(true);
 
   // 🔧 API URL configuration
-  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5174";
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const quickReplies = [
     "Looking for Study Abroad",
