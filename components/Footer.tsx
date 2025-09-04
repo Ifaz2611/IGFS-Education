@@ -206,7 +206,7 @@ const Footer: React.FC = () => {
           {/* Team Credit with Link */}
           <p className="mt-2">
             <a
-              href="#" // 🔗 Replace this with your real team link
+              href="http://teamx.infinityfreeapp.com/" // 🔗 Replace this with your real team link
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-brand-secondary font-medium transition-colors duration-300 flex items-center justify-center gap-1.5 text-sm"

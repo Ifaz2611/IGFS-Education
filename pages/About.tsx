@@ -285,7 +285,7 @@ const About: React.FC = () => {
             </p>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-8 inline-block">
               <button
-                onClick={() => window.location.href = "/contact"} //path change 
+                onClick={() => window.location.href = "/#/contact"} 
                 className="bg-white text-brand-primary font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-100 transition-colors text-lg"
               >
                 Get Started Today

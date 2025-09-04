@@ -95,7 +95,7 @@ const FAQ: React.FC = () => {
             <p className="text-gray-600 dark:text-gray-400">
               Still have questions?{" "}
               <a
-                href="mailto:intguideforstudents@gmail.com"
+                href="/#/contact"
                 className="text-brand-secondary hover:underline font-semibold"
               >
                 Contact us

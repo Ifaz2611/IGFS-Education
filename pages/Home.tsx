@@ -462,51 +462,30 @@ const Home: React.FC = () => {
                     </motion.div>
                 </div>
             </section>
-
-            {/* Lead Magnet (PDF Download) */}
-            <section className="py-20 bg-brand-primary text-white" aria-label="Newsletter signup">
+            {/* Lead Magnet (Google Drive PDF Link) */}
+            <section className="py-20 bg-brand-primary text-white" aria-label="Download study abroad guide">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold">Get Your Free Study Abroad Guide</h2>
                     <p className="mt-4 max-w-2xl mx-auto">
-                        Download our comprehensive PDF guide covering everything from choosing a country to packing your bags.
+                        Download our comprehensive guide covering everything from choosing a country to packing your bags.
                     </p>
-                    {newsletterSubmitted ? (
-                        <div className="mt-8 p-6 bg-white/20 rounded-lg backdrop-blur-sm">
-                            <p className="text-lg">✅ Thank you! The guide has been downloaded.</p>
-                            <p className="text-sm mt-2">Check your inbox for more tips.</p>
-                        </div>
-                    ) : (
-                        <motion.form
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.5 }}
-                            variants={staggerContainer}
-                            className="mt-8 max-w-lg mx-auto flex flex-col sm:flex-row gap-4"
-                            onSubmit={handleNewsletterSubmit}
+
+                    {/* Direct Google Drive Button */}
+                    <div className="mt-8">
+                        <a
+                            href="https://drive.google.com/file/d/1bDVRFgQ7OiZO14xad0xqxdhTdFDK6vAz/view?usp=sharing" // 🔗 Replace with your actual Google Drive shareable link
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90 transition duration-300"
+                            aria-label="Open study abroad guide in Google Drive"
                         >
-                            <motion.input
-                                variants={slideInFrom('left')}
-                                type="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="flex-grow px-4 py-3 rounded-lg text-gray-800 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                                required
-                                aria-label="Email address for newsletter"
-                            />
-                            <motion.button
-                                variants={slideInFrom('right')}
-                                animate={{ scale: [1, 1.03, 1] }}
-                                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                                type="submit"
-                                className="bg-brand-secondary text-brand-primary font-semibold py-3 px-8 rounded-lg shadow-md hover:opacity-90"
-                                disabled={isSubmittingNewsletter}
-                                aria-label="Download free study abroad guide"
-                            >
-                                {isSubmittingNewsletter ? 'Sending...' : 'Download Now'}
-                            </motion.button>
-                        </motion.form>
-                    )}
+                            Download Now <ArrowRightIcon className="ml-2 h-5 w-5" />
+                        </a>
+                    </div>
+
+                    {/* <p className="mt-4 text-sm text-gray-200">
+                        Opens in Google Drive – no email required.
+                    </p> */}
                 </div>
             </section>
 
@@ -558,92 +537,57 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Contact Section */}
-            <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Contact us">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-12">
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
-                            variants={staggerContainer}
-                        >
-                            <h2 className="text-3xl font-bold text-brand-primary dark:text-gray-100">Ready to Start?</h2>
-                            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                                Reach out to us today. Our expert counselors are ready to help you plan your future.
-                            </p>
-                            <form className="mt-8 space-y-4" onSubmit={handleContactSubmit}>
-                                <motion.input
-                                    variants={fadeInUp}
-                                    type="text"
-                                    placeholder="Your Name"
-                                    className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                    required
-                                    aria-label="Your name"
-                                />
-                                <motion.input
-                                    variants={fadeInUp}
-                                    type="email"
-                                    placeholder="Your Email"
-                                    className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                    required
-                                    aria-label="Your email"
-                                />
-                                <motion.textarea
-                                    variants={fadeInUp}
-                                    placeholder="Your Message"
-                                    rows={4}
-                                    className="w-full px-4 py-3 rounded-lg border dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                                    required
-                                    aria-label="Your message"
-                                ></motion.textarea>
-                                <motion.button
-                                    variants={fadeInUp}
-                                    type="submit"
-                                    className="w-full bg-brand-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300"
-                                    disabled={isSubmittingContact}
-                                    aria-label="Send message"
-                                >
-                                    {isSubmittingContact ? 'Sending...' : 'Send Message'}
-                                </motion.button>
-                            </form>
-                        </motion.div>
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
-                            variants={scaleIn}
-                        >
-                            <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                                <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-4">Contact Information</h3>
-                                <p className="text-gray-600 dark:text-gray-300 mb-2">
-                                    <strong>Email:</strong> intguideforstudents@gmail.com
-                                </p>
-                                <p className="text-gray-600 dark:text-gray-300 mb-2">
-                                    <strong>Phone:</strong> +88(01835-152037)
-                                </p>
-                                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                                    <strong>Address:</strong> Amtola, 60 Feet, Mirpur-1216
-                                </p>
-                                <h4 className="font-bold text-brand-primary dark:text-gray-200 mb-2">Office Hours:</h4>
-                                <p className="text-gray-600 dark:text-gray-300">Sat - Thus: 10:00 AM - 6:00 PM</p>
-                                <p className="text-gray-600 dark:text-gray-300">(Friday Closed)</p>
-                                <div className="mt-6 h-48 rounded-lg overflow-hidden">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9313386532103!2d90.36237788684178!3d23.785459232385197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0b7c8db4515%3A0x38adef9072a2e029!2sS%20Paikpara%20-%20Pirerbag%20Amtola%20Rd%20%26%20Kamal%20Soroni%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1756659428250!5m2!1sen!2sbd"
-                                        width="100%"
-                                        height="100%"
-                                        style={{ border: 0 }}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        title="Map location"
-                                    ></iframe>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
+{/* Contact Section - Left-Aligned Info, Full-Width */}
+<section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Contact information">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-1 gap-8"> {/* Single column on all screens */}
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={scaleIn}
+                className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md"
+            >
+                <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-6">
+                    Contact Information
+                </h3>
+
+                <div className="text-gray-600 dark:text-gray-300 space-y-3">
+                    <p>
+                        <strong>Email:</strong> intguideforstudents@gmail.com
+                    </p>
+                    <p>
+                        <strong>Phone:</strong> +88(01835-152037)
+                    </p>
+                    <p>
+                        <strong>Address:</strong> Amtola, 60 Feet, Mirpur-1216
+                    </p>
                 </div>
-            </section>
+
+                <div className="mt-6">
+                    <h4 className="font-bold text-brand-primary dark:text-gray-200 mb-2">
+                        Office Hours:
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">Sat - Thurs: 10:00 AM - 6:00 PM</p>
+                    <p className="text-gray-600 dark:text-gray-300">(Friday Closed)</p>
+                </div>
+
+                {/* Map */}
+                <div className="mt-8 h-64 rounded-lg overflow-hidden">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9313386532103!2d90.36237788684178!3d23.785459232385197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0b7c8db4515%3A0x38adef9072a2e029!2sS%20Paikpara%20-%20Pirerbag%20Amtola%20Rd%20%26%20Kamal%20Soroni%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1756659428250!5m2!1sen!2sbd"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        title="Map location"
+                    ></iframe>
+                </div>
+            </motion.div>
+        </div>
+    </div>
+</section>
         </div>
     );
 };
