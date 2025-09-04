@@ -626,8 +626,8 @@ const Home: React.FC = () => {
                                     <strong>Address:</strong> Amtola, 60 Feet, Mirpur-1216
                                 </p>
                                 <h4 className="font-bold text-brand-primary dark:text-gray-200 mb-2">Office Hours:</h4>
-                                <p className="text-gray-600 dark:text-gray-300">Mon - Fri: 9:00 AM - 6:00 PM</p>
-                                <p className="text-gray-600 dark:text-gray-300">Sat: 10:00 AM - 2:00 PM</p>
+                                <p className="text-gray-600 dark:text-gray-300">Sat - Thus: 10:00 AM - 6:00 PM</p>
+                                <p className="text-gray-600 dark:text-gray-300">(Friday Closed)</p>
                                 <div className="mt-6 h-48 rounded-lg overflow-hidden">
                                     <iframe
                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.9313386532103!2d90.36237788684178!3d23.785459232385197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c0b7c8db4515%3A0x38adef9072a2e029!2sS%20Paikpara%20-%20Pirerbag%20Amtola%20Rd%20%26%20Kamal%20Soroni%20Rd%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1756659428250!5m2!1sen!2sbd"

@@ -56,34 +56,34 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Facebook"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors"
+                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
               >
                 <FacebookIcon />
               </a>
               <a
-                href="#" // Add X profile link
+                href="https://x.com/your-igfs-handle" // 👈 Replace with actual X profile
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on X"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors"
+                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
               >
                 <XIcon />
               </a>
               <a
-                href="#" // Add LinkedIn link
+                href="https://linkedin.com/company/your-igfs-page" // 👈 Replace with actual LinkedIn
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on LinkedIn"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors"
+                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
               >
                 <LinkedinIcon />
               </a>
               <a
-                href="#" // Add Instagram link
+                href="https://instagram.com/your-igfs-handle" // 👈 Replace with actual Instagram
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors"
+                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
               >
                 <InstagramIcon />
               </a>
@@ -99,7 +99,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   About Us
                 </Link>
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/services"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   Services
                 </Link>
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/destinations"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   Destinations
                 </Link>
@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/blog"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   Blog
                 </Link>
@@ -140,7 +140,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/process"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   Our Process
                 </Link>
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   Contact Us
                 </Link>
@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   to="/faq"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
                   FAQ
                 </Link>
@@ -178,7 +178,7 @@ const Footer: React.FC = () => {
                 <span className="mr-2">📧</span>
                 <a
                   href="mailto:intguideforstudents@gmail.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   intguideforstudents@gmail.com
                 </a>
@@ -187,7 +187,7 @@ const Footer: React.FC = () => {
                 <span className="mr-2">📞</span>
                 <a
                   href="tel:+8801835152037"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors duration-300"
                 >
                   +88 (01835-152037)
                 </a>
@@ -196,11 +196,24 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Copyright */}
+        {/* Copyright & Team Credit */}
         <div className="mt-12 border-t border-white/20 pt-6 text-center text-xs sm:text-sm text-gray-300">
           <p>
             &copy; {new Date().getFullYear()} IGFS. All Rights Reserved.{" "}
             <span className="hidden sm:inline">Your Future, Our Mission.</span>
+          </p>
+
+          {/* Team Credit with Link */}
+          <p className="mt-2">
+            <a
+              href="#" // 🔗 Replace this with your real team link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-brand-secondary font-medium transition-colors duration-300 flex items-center justify-center gap-1.5 text-sm"
+            >
+              Made by Team_X👩🏻‍💻
+              <span aria-hidden="true"></span>
+            </a>
           </p>
         </div>
       </div>
