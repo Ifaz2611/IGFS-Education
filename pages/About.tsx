@@ -140,7 +140,7 @@ const About: React.FC = () => {
               <div className="w-1/3 h-1 bg-brand-secondary mt-3 rounded-full"></div>
             </h2>
             <p className="mt-6 text-gray-600 dark:text-gray-300 leading-relaxed">
-              Founded in 2023, the International Guide for Students (IGFS) began with a simple idea: every student
+              Founded in 2025, the International Guide for Students (IGFS) began with a simple idea: every student
               deserves a chance to pursue their dream education, regardless of their background. What started as a
               small advisory service has grown into a global consultancy with partners across three continents.
             </p>
