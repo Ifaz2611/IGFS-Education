@@ -132,45 +132,45 @@ const Contact: React.FC = () => {
   return (
     <div className="bg-white dark:bg-gray-900 min-h-screen overflow-x-hidden transition-colors duration-300">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 text-center py-20">
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-    <motion.h1
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100"
-    >
-      Get in Touch
-    </motion.h1>
+      <header className="bg-white dark:bg-gray-800 text-center py-12 sm:py-16 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-gray-100"
+          >
+            Get in Touch
+          </motion.h1>
 
-    <motion.p
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-      className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
-    >
-      We're here to help you on your journey to international education. Reach out with your questions.
-    </motion.p>
-  </div>
-</header>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
+          >
+            We're here to help you on your journey to international education. Reach out with your questions.
+          </motion.p>
+        </div>
+      </header>
 
 
       {/* Form Section */}
-      <section className="py-20 bg-cyan-50 dark:bg-gray-800">
+      <section className="py-12 sm:py-16 md:py-20 bg-cyan-50 dark:bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
-            className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-8 sm:p-12 rounded-lg shadow-lg"
+            className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-4 sm:p-6 md:p-8 lg:p-12 rounded-lg shadow-lg"
           >
-            <div className="text-left mb-8">
-              <h2 className="text-3xl font-extrabold text-brand-primary dark:text-gray-100">
+            <div className="text-left mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-primary dark:text-gray-100">
                 IGFS Can Help You
               </h2>
-              <div className="w-16 h-1 bg-orange-500 mt-2"></div>
-              <p className="mt-4 text-gray-600 dark:text-gray-300">
+              <div className="w-12 sm:w-16 h-1 bg-orange-500 mt-2"></div>
+              <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-300">
                 Enter your details and one of our expert counsellors will reach out.
               </p>
             </div>
@@ -188,12 +188,12 @@ const Contact: React.FC = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name Fields */}
-              <motion.div variants={fadeInUp} className="grid sm:grid-cols-2 gap-6">
+              <motion.div variants={fadeInUp} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {['firstName', 'lastName'].map((field) => (
                   <div key={field}>
                     <label
                       htmlFor={field}
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       {field === 'firstName' ? 'First Name*' : 'Last Name*'}
                     </label>
@@ -203,12 +203,12 @@ const Contact: React.FC = () => {
                       name={field}
                       value={formData[field as keyof ContactFormData]}
                       onChange={handleChange}
-                      className={`mt-1 block w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                      className={`block w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm sm:text-base transition-colors ${
                         errors[field as keyof ContactFormData] ? 'border-red-500' : 'border-gray-300'
                       }`}
                     />
                     {errors[field as keyof ContactFormData] && (
-                      <p className="mt-1 text-sm text-red-500">
+                      <p className="mt-1 text-xs sm:text-sm text-red-500">
                         {errors[field as keyof ContactFormData]}
                       </p>
                     )}
@@ -218,7 +218,7 @@ const Contact: React.FC = () => {
 
               {/* Email */}
               <motion.div variants={fadeInUp}>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Email Address*
                 </label>
                 <input
@@ -227,27 +227,27 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`mt-1 block w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                  className={`block w-full px-3 sm:px-4 py-2.5 sm:py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white text-sm sm:text-base transition-colors ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
-                {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
+                {errors.email && <p className="mt-1 text-xs sm:text-sm text-red-500">{errors.email}</p>}
               </motion.div>
 
               {/* Mobile Number - International */}
               <motion.div variants={fadeInUp} className="w-full">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   Mobile Number*
                 </label>
-                <div className="mt-1 flex w-full rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden">
+                <div className="flex w-full rounded-md border border-gray-300 dark:border-gray-600 overflow-hidden">
                   {/* Country Code Dropdown */}
                   <select
                     name="countryCode"
                     value={formData.countryCode}
                     onChange={handleChange}
-                    className="w-28 sm:w-32 px-3 py-3 bg-gray-50 text-gray-700 text-sm
+                    className="w-20 sm:w-28 md:w-32 px-2 sm:px-3 py-2.5 sm:py-3 bg-gray-50 text-gray-700 text-xs sm:text-sm
                               focus:outline-none dark:bg-gray-600 dark:text-gray-200
-                              border-r border-gray-300 dark:border-gray-500 rounded-l-md"
+                              border-r border-gray-300 dark:border-gray-500 rounded-l-md transition-colors"
                     aria-label="Country code"
                   >
                     {[

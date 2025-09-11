@@ -30,33 +30,33 @@ const Footer: React.FC = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="bg-brand-primary text-white relative z-10"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {/* Brand Info */}
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <img
-                className="h-12 w-12 rounded-full border-2 border-white object-cover"
+                className="h-10 w-10 sm:h-12 sm:w-12 rounded-full border-2 border-white object-cover"
                 src="/images/Logo/IGFS_X.jpeg"
                 alt="IGFS Logo"
               />
-              <span className="text-white text-2xl font-bold tracking-wide">
+              <span className="text-white text-xl sm:text-2xl font-bold tracking-wide">
                 IGFS
               </span>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed mb-5">
               Your trusted partner in navigating the journey to international
               education and a global career.
             </p>
 
             {/* Social Links */}
-            <div className="flex space-x-4 mt-5">
+            <div className="flex space-x-3 sm:space-x-4">
               <a
                 href="https://www.facebook.com/profile.php?id=61578832565528"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Facebook"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
+                className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300 hover:scale-110 transform"
               >
                 <FacebookIcon />
               </a>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on X"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
+                className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300 hover:scale-110 transform"
               >
                 <XIcon />
               </a>
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on LinkedIn"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
+                className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300 hover:scale-110 transform"
               >
                 <LinkedinIcon />
               </a>
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
-                className="p-2 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300"
+                className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-brand-secondary transition-colors duration-300 hover:scale-110 transform"
               >
                 <InstagramIcon />
               </a>
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 tracking-wide">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">
               Quick Links
             </h3>
             <ul className="space-y-2 text-sm">
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
 
           {/* Resources */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 tracking-wide">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">
               Resources
             </h3>
             <ul className="space-y-2 text-sm">
@@ -166,25 +166,25 @@ const Footer: React.FC = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 tracking-wide">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 tracking-wide">
               Contact Us
             </h3>
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start">
-                <span className="mr-2 mt-0.5">📍</span>
-                <span>Amtola, 60 Feet, Mirpur-1216</span>
+                <span className="mr-2 mt-0.5 text-base">📍</span>
+                <span className="break-words">Amtola, 60 Feet, Mirpur-1216</span>
               </li>
-              <li className="flex items-center">
-                <span className="mr-2">📧</span>
+              <li className="flex items-start">
+                <span className="mr-2 mt-0.5 text-base">📧</span>
                 <a
                   href="mailto:intguideforstudents@gmail.com"
-                  className="hover:text-white transition-colors duration-300"
+                  className="hover:text-white transition-colors duration-300 break-all"
                 >
                   intguideforstudents@gmail.com
                 </a>
               </li>
-              <li className="flex items-center">
-                <span className="mr-2">📞</span>
+              <li className="flex items-start">
+                <span className="mr-2 mt-0.5 text-base">📞</span>
                 <a
                   href="tel:+8801835152037"
                   className="hover:text-white transition-colors duration-300"
@@ -197,22 +197,23 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright & Team Credit */}
-        <div className="mt-12 border-t border-white/20 pt-6 text-center text-xs sm:text-sm text-gray-300">
-          <p>
-            &copy; {new Date().getFullYear()} IGFS. All Rights Reserved.{" "}
-            <span className="hidden sm:inline">Your Future, Our Mission.</span>
+        <div className="mt-10 sm:mt-12 border-t border-white/20 pt-6 text-center text-xs sm:text-sm text-gray-300">
+          <p className="mb-2">
+            &copy; {new Date().getFullYear()} IGFS. All Rights Reserved.
+          </p>
+          <p className="mb-4">
+            <span className="block sm:inline">Your Future, Our Mission.</span>
           </p>
 
           {/* Team Credit with Link */}
-          <p className="mt-2">
+          <p>
             <a
               href="http://teamx.infinityfreeapp.com/" // 🔗 Replace this with your real team link
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-brand-secondary font-medium transition-colors duration-300 flex items-center justify-center gap-1.5 text-sm"
+              className="text-white hover:text-brand-secondary font-medium transition-colors duration-300 inline-flex items-center justify-center gap-1.5 text-sm hover:scale-105 transform"
             >
               Made by Team_X👩🏻‍💻
-              <span aria-hidden="true"></span>
             </a>
           </p>
         </div>

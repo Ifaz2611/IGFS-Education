@@ -71,15 +71,15 @@ const ServiceCard = React.memo(
         return (
             <motion.div
                 variants={fadeInUp}
-                whileHover={{ y: -8, boxShadow: '0 10px 20px rgba(31, 70, 97, 0.2)' }}
-                className="bg-brand-light dark:bg-gray-800 p-8 rounded-lg shadow-md h-full"
+                whileHover={{ y: -4, boxShadow: '0 10px 20px rgba(31, 70, 97, 0.2)' }}
+                className="bg-brand-light dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-md h-full transition-all duration-300"
             >
-                <h3 className="text-xl font-bold text-brand-primary dark:text-gray-200 mb-3">{title}</h3>
-                <ul className="text-gray-600 dark:text-gray-400 text-left space-y-2">
+                <h3 className="text-lg sm:text-xl font-bold text-brand-primary dark:text-gray-200 mb-3 sm:mb-4">{title}</h3>
+                <ul className="text-gray-600 dark:text-gray-400 text-left space-y-2 sm:space-y-3">
                     {features.map((feature, idx) => (
                         <li key={idx} className="flex items-start">
-                            <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                            <span>{feature}</span>
+                            <CheckCircleIcon className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                            <span className="text-sm sm:text-base leading-relaxed">{feature}</span>
                         </li>
                     ))}
                 </ul>
@@ -166,7 +166,7 @@ const Home: React.FC = () => {
     return (
         <div className="bg-white dark:bg-gray-900 overflow-x-hidden">
             {/* Hero Section */}
-            <section className="relative flex items-center justify-center w-full h-[90vh] overflow-hidden text-white">
+            <section className="relative flex items-center justify-center w-full h-[70vh] sm:h-[80vh] md:h-[90vh] overflow-hidden text-white">
                 <video
                     src="/videos/Home-hero.mp4"
                     autoPlay
@@ -174,23 +174,25 @@ const Home: React.FC = () => {
                     muted
                     playsInline
                     className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                    poster="/images/hero-fallback.jpg"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
                 <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center md:justify-start">
-                    <div className="text-center md:text-left max-w-xl">
+                    <div className="text-center md:text-left max-w-xl lg:max-w-2xl">
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
-                            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug"
+                            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight sm:leading-snug"
                         >
-                            Your Global Future <br /> Starts Here with IGFS
+                            Your Global Future <br className="hidden sm:block" /> 
+                            <span className="sm:hidden"> </span>Starts Here with IGFS
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                            className="mt-4 text-sm sm:text-base md:text-lg text-gray-200"
+                            className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed"
                         >
                             We pave the way for ambitious students to access world-class education. 
                             Discover your potential, find the right university, and start your international journey with our expert guidance.
@@ -199,14 +201,14 @@ const Home: React.FC = () => {
                             initial="hidden"
                             animate="visible"
                             variants={staggerContainer}
-                            className="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
+                            className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start"
                         >
                             <MotionLink
                                 variants={fadeInUp}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 to="/contact"
-                                className="bg-brand-secondary text-brand-primary font-semibold py-2 px-6 rounded-md shadow-md hover:opacity-90 transition duration-300 text-sm"
+                                className="bg-brand-secondary text-brand-primary font-semibold py-3 px-6 sm:px-8 rounded-md shadow-md hover:opacity-90 transition duration-300 text-sm sm:text-base"
                             >
                                 Book a Free Consultation
                             </MotionLink>
@@ -215,7 +217,7 @@ const Home: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 to="/destinations"
-                                className="bg-transparent text-white font-semibold py-2 px-6 rounded-md border border-white hover:bg-white hover:text-brand-primary transition duration-300 text-sm"
+                                className="bg-transparent text-white font-semibold py-3 px-6 sm:px-8 rounded-md border-2 border-white hover:bg-white hover:text-brand-primary transition duration-300 text-sm sm:text-base"
                             >
                                 Explore Destinations
                             </MotionLink>
@@ -228,48 +230,48 @@ const Home: React.FC = () => {
             <motion.section
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.3 }}
                 variants={staggerContainer}
                 className="bg-brand-primary text-white"
                 aria-label="Company statistics"
             >
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-                        <motion.div variants={fadeInUp}>
-                            <p className="text-4xl font-bold text-brand-secondary">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
+                        <motion.div variants={fadeInUp} className="space-y-2">
+                            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-secondary">
                                 <AnimatedCounter to={50} suffix="+" />
                             </p>
-                            <p className="text-lg font-medium">University Offers Secured</p>
+                            <p className="text-sm sm:text-base md:text-lg font-medium">University Offers Secured</p>
                         </motion.div>
-                        <motion.div variants={fadeInUp}>
-                            <p className="text-4xl font-bold text-brand-secondary">
+                        <motion.div variants={fadeInUp} className="space-y-2">
+                            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-secondary">
                                 <AnimatedCounter to={3} />
                             </p>
-                            <p className="text-lg font-medium">Top Destination Countries</p>
+                            <p className="text-sm sm:text-base md:text-lg font-medium">Top Destination Countries</p>
                         </motion.div>
-                        <motion.div variants={fadeInUp}>
-                            <p className="text-4xl font-bold text-brand-secondary">
+                        <motion.div variants={fadeInUp} className="space-y-2">
+                            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-secondary">
                                 <AnimatedCounter to={7} suffix="-10 Days" />
                             </p>
-                            <p className="text-lg font-medium">Average Shortlisting Time</p>
+                            <p className="text-sm sm:text-base md:text-lg font-medium">Average Shortlisting Time</p>
                         </motion.div>
                     </div>
                 </div>
             </motion.section>
 
             {/* Services Section */}
-            <section className="py-20 bg-white dark:bg-gray-900" aria-label="Services">
+            <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900" aria-label="Services">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Our Services</h2>
-                    <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Our Services</h2>
+                    <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         We offer end-to-end support to make your study abroad dream a reality.
                     </p>
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
+                        viewport={{ once: true, amount: 0.1 }}
                         variants={staggerContainer}
-                        className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                        className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
                     >
                         {[
                             {
