@@ -11,7 +11,7 @@ const TickerText: React.FC = () => {
         "Fall 2025 admissions are now open for USA, South Korea, and Italy!",
         "Book a free virtual counselling session with our experts this week.",
         "New scholarships announced for STEM programs in South Korea.",
-        "IGFS wishes all students the best for their upcoming exams!",
+        "IGS wishes all students the best for their upcoming exams!",
         "Check out our latest blog post on writing the perfect Statement of Purpose."
     ];
 
@@ -61,11 +61,15 @@ const NewsTicker: React.FC<NewsTickerProps> = ({
 
     return (
         <div
-            className="sticky top-20 bg-brand-secondary text-brand-primary overflow-hidden z-40"
+            className="sticky top-20 overflow-hidden z-40" // Removed bg/text classes — now custom
             aria-label="Latest announcements"
             role="region"
             onMouseEnter={() => pauseOnHover && setIsHovered(true)}
             onMouseLeave={() => pauseOnHover && setIsHovered(false)}
+            style={{
+                backgroundColor: '#1a1a2e', // Deep navy — modern, professional
+                color: '#00f5ff',           // Bright cyan — eye-catching, futuristic
+            }}
         >
             <div
                 className="py-2.5"

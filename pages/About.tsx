@@ -44,6 +44,14 @@ const About: React.FC = () => {
       fullBio:
         'Hi . I am pursuing a Double Major in Global Business Administration and Global Hospitality Management at Kyungsung University, Busan, South Korea. My academic focus combines international business strategies with global hospitality practices, preparing me to contribute to cross-cultural industries and dynamic global markets.',
     },
+    {
+      name: 'Afnan Alamin',
+      title: 'Team Member',
+      img: '/images/aboutus1/afnan1.jpeg',
+      bio: 'Click For More Details',
+      fullBio:
+        'I am Afnan Alamin, currently pursuing my studies at the University of Milan, Italy. Passionate about academic growth and international exposure, I am focused on building knowledge and skills that connect global perspectives with practical applications. Studying in Italy allows me to engage with diverse cultures, broaden my worldview, and prepare for future opportunities in both academic and professional fields.',
+    },
     // {
     //   name: 'Maria Santos',
     //   title: 'Student Success Manager',
@@ -140,7 +148,7 @@ const About: React.FC = () => {
               <div className="w-1/3 h-1 bg-brand-secondary mt-3 rounded-full"></div>
             </h2>
             <p className="mt-6 text-gray-600 dark:text-gray-300 leading-relaxed">
-              Founded in 2025, the International Guide for Students (IGFS) began with a simple idea: every student
+              Founded in 2025, the International Guide for Students (IGS) began with a simple idea: every student
               deserves a chance to pursue their dream education, regardless of their background. What started as a
               small advisory service has grown into a global consultancy with partners across three continents.
             </p>
@@ -149,7 +157,7 @@ const About: React.FC = () => {
             </p>
 
             <p className="mt-6 text-sm text-gray-500 dark:text-gray-400 italic">
-              Listen to our founder share the inspiring journey behind IGFS.
+              Listen to our founder share the inspiring journey behind IGS.
             </p>
           </motion.div>
 
@@ -172,7 +180,7 @@ const About: React.FC = () => {
                 style={{
                   aspectRatio: '9 / 16', // 👈 Matches 464x832 → 9:16
                 }}
-                aria-label="Founder sharing the story of IGFS with audio"
+                aria-label="Founder sharing the story of IGS with audio"
               />
             </div>
           </motion.div>
@@ -279,7 +287,7 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white">Join the IGFS Family</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">Join the IGS Family</h2>
             <p className="mt-4 text-lg text-gray-100 max-w-2xl mx-auto">
               Let our team of experts guide you on your journey to academic excellence. Your future awaits.
             </p>

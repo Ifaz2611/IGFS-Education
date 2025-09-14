@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
                   whileHover={{ rotate: 5 }}
                 />   
                 <span className="text-white text-lg sm:text-xl md:text-2xl font-bold group-hover:text-brand-secondary transition-colors">
-                  IGFS
+                  IGS
                 </span>
               </Link>
             </div>

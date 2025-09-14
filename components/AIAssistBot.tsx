@@ -173,7 +173,7 @@ const AIAssistBot: React.FC = () => {
           >
             <header className="bg-brand-primary text-white p-4 flex items-center justify-between">
               <div>
-                <h3 className="font-bold text-lg">IGFS AI Assistant</h3>
+                <h3 className="font-bold text-lg">IGS AI Assistant</h3>
                 <p className="text-sm text-gray-200">Your study abroad guide</p>
               </div>
               <button

@@ -2,8 +2,7 @@ import React from 'react';
 import { motion, Variants } from 'framer-motion';
 
 const SuccessStories: React.FC = () => {
-    // Placeholder data — all real stories are commented until approved
-    /*
+    // Real stories - now UNCOMMENTED and active
     const stories = [
         {
             name: 'Priya Sharma',
@@ -26,29 +25,15 @@ const SuccessStories: React.FC = () => {
             quote: "IGFS understood the nuances of applying to a top design school in Italy. They didn't just help with paperwork; they provided critical feedback on my portfolio, which made all the difference. Their guidance on the complex Italian visa process was clear and precise. Grazie mille, IGFS!",
             img: 'https://picsum.photos/id/1011/150/150'
         },
-        {
-            name: 'Aisha Al-Jamil',
-            destination: 'University of Toronto, Canada',
-            program: 'B.Com in Finance',
-            quote: "The entire IGFS team was professional, patient, and incredibly knowledgeable. They helped me find the perfect commerce program and guided me in securing a study permit for Canada. The pre-departure session was fantastic, providing practical tips that made my transition to a new country so much smoother.",
-            img: 'https://picsum.photos/id/1013/150/150'
-        },
-        {
-            name: 'Ken Obinna',
-            destination: 'University of Melbourne, Australia',
-            program: 'PhD in Public Health',
-            quote: "Applying for a PhD program is a unique challenge. IGFS connected me with a mentor who helped me refine my research proposal and contact potential supervisors. This specialized guidance was invaluable and directly led to my admission with a full scholarship. I highly recommend them for postgraduate applicants.",
-            img: 'https://picsum.photos/id/1014/150/150'
-        },
-        {
-            name: 'Liam Chen',
-            destination: 'National University of Singapore, Singapore',
-            program: 'MBA',
-            quote: "IGFS gave me clarity in my MBA application journey. From GMAT prep guidance to essay editing and interview coaching, they were with me every step of the way. I'm now proud to be part of NUS's prestigious business school.",
-            img: 'https://picsum.photos/id/1028/150/150'
-        },
+        // {
+        //     name: 'Aisha Al-Jamil',
+        //     destination: 'University of Toronto, Canada',
+        //     program: 'B.Com in Finance',
+        //     quote: "The entire IGFS team was professional, patient, and incredibly knowledgeable. They helped me find the perfect commerce program and guided me in securing a study permit for Canada. The pre-departure session was fantastic, providing practical tips that made my transition to a new country so much smoother.",
+        //     img: 'https://picsum.photos/id/1013/150/150'
+        // },
+
     ];
-    */
 
     return (
         <div className="bg-brand-light dark:bg-gray-900 overflow-x-hidden">
@@ -66,36 +51,15 @@ const SuccessStories: React.FC = () => {
 
             <main className="py-20">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Coming Soon Message */}
-                    <div className="text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+                    {/* Title only — no "Coming Soon" message anymore */}
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
                             Student Success Stories
                         </h2>
-                        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                            Real journeys. Real achievements. Coming soon.
-                        </p>
-                        <div className="mt-10">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
-                                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-12 text-center"
-                            >
-                                <h3 className="text-2xl font-semibold text-brand-primary dark:text-blue-400">
-                                    Stay Tuned!
-                                </h3>
-                                <p className="mt-4 text-gray-600 dark:text-gray-300">
-                                    Our students are achieving amazing things around the world. 
-                                    Their inspiring stories will be shared here very soon.
-                                </p>
-                            </motion.div>
-                        </div>
                     </div>
 
-                    {/* Uncomment below when stories are ready */}
-                    {/* 
-                    <div className="space-y-12 mt-20">
+                    {/* Active Success Stories Section — UNCOMMENTED and LIVE */}
+                    <div className="space-y-12">
                         {stories.map((story, index) => {
                             const slideInVariant: Variants = {
                                 hidden: { opacity: 0, x: index % 2 !== 0 ? 50 : -50 },
@@ -130,7 +94,6 @@ const SuccessStories: React.FC = () => {
                             );
                         })}
                     </div>
-                    */}
                 </div>
             </main>
         </div>

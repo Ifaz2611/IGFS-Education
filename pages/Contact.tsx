@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
           >
             <div className="text-left mb-6 sm:mb-8">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-primary dark:text-gray-100">
-                IGFS Can Help You
+                IGS Can Help You
               </h2>
               <div className="w-12 sm:w-16 h-1 bg-orange-500 mt-2"></div>
               <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-300">
@@ -621,7 +621,7 @@ const Contact: React.FC = () => {
                     className="h-4 w-4 mt-1 text-brand-primary rounded focus:ring-brand-primary border-gray-300"
                   />
                   <label htmlFor="updates-consent" className="ml-3 text-sm text-gray-600 dark:text-gray-300">
-                    I would like to receive updates and offers from IGFS.
+                    I would like to receive updates and offers from IGS.
                   </label>
                 </div>
               </motion.div>

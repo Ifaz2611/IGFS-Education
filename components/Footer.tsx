@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
                 alt="IGFS Logo"
               />
               <span className="text-white text-xl sm:text-2xl font-bold tracking-wide">
-                IGFS
+                IGS
               </span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-5">
@@ -199,7 +199,7 @@ const Footer: React.FC = () => {
         {/* Copyright & Team Credit */}
         <div className="mt-10 sm:mt-12 border-t border-white/20 pt-6 text-center text-xs sm:text-sm text-gray-300">
           <p className="mb-2">
-            &copy; {new Date().getFullYear()} IGFS. All Rights Reserved.
+            &copy; {new Date().getFullYear()} IGS. All Rights Reserved.
           </p>
           <p className="mb-4">
             <span className="block sm:inline">Your Future, Our Mission.</span>

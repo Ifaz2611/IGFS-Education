@@ -36,7 +36,7 @@ const Blog: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-5xl font-extrabold text-brand-primary dark:text-gray-100"
           >
-            IGFS Insights Blog
+            IGS Insights Blog
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

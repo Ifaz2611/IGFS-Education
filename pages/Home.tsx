@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, Variants } from 'framer-motion';
 import { CheckCircleIcon, ArrowRightIcon } from '../components/icons'; // Ensure these exist
@@ -186,7 +187,7 @@ const Home: React.FC = () => {
                             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight sm:leading-snug"
                         >
                             Your Global Future <br className="hidden sm:block" /> 
-                            <span className="sm:hidden"> </span>Starts Here with IGFS
+                            <span className="sm:hidden"> </span>Starts Here with IGS
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
@@ -320,86 +321,90 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Destinations Section */}
-            <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Popular destinations">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Popular Destinations</h2>
-                    <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Explore top-tier education in countries that offer unique cultural and academic experiences.
-                    </p>
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        variants={staggerContainer}
-                        className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8"
-                    >
-                        {[
-                            {
-                                name: 'United States',
-                                key: 'USA',
-                                img: '/images/destinations/usa.jpg',
-                                title: 'United States: Where opportunities thrive',
-                                description:
-                                    'Unleash your potential at top-ranked universities, with cutting-edge resources and a dynamic environment that empowers you to achieve your dreams.',
-                            },
-                            {
-                                name: 'South Korea',
-                                key: 'South Korea',
-                                img: '/images/destinations/south-korea.jpg',
-                                title: 'South Korea: Innovation meets tradition',
-                                description:
-                                    'Immerse yourself in a tech-forward society with world-class education in engineering and arts, all while experiencing a rich cultural heritage.',
-                            },
-                            {
-                                name: 'Italy',
-                                key: 'Italy',
-                                img: '/images/destinations/italy.jpg',
-                                title: 'Italy: A legacy of art and culture',
-                                description:
-                                    'Study amidst timeless masterpieces. Italy offers unparalleled education in design, architecture, and humanities in the heart of history.',
-                            },
-                        ].map((dest) => (
-                            <motion.div
-                                key={dest.name}
-                                variants={fadeInUp}
-                                className="relative rounded-xl shadow-lg overflow-hidden group w-full aspect-video"
-                                whileHover="hover"
-                                aria-label={`Study in ${dest.name}`}
-                            >
-                                <img
-                                    src={dest.img}
-                                    alt={dest.name}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                                <div className="absolute bottom-0 left-0 p-6">
-                                    <h3 className="text-white text-2xl font-bold">{dest.name}</h3>
-                                </div>
-                                <motion.div
-                                    className="absolute inset-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center border-4 border-blue-500 dark:border-blue-400 rounded-xl"
-                                    initial={{ opacity: 0 }}
-                                    variants={{
-                                        hover: { opacity: 1 },
-                                    }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <h4 className="text-2xl font-bold text-blue-700 dark:text-blue-400">{dest.title}</h4>
-                                    <p className="mt-2 text-gray-600 dark:text-gray-300">{dest.description}</p>
-                                    <Link
-                                        to="/destinations"
-                                        state={{ destination: dest.key }}
-                                        className="mt-4 bg-blue-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300"
-                                        aria-label={`Study in ${dest.name}`}
-                                    >
-                                        Study in {dest.name}
-                                    </Link>
-                                </motion.div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+    {/* Destinations Section */}
+    <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Popular destinations">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Popular Destinations</h2>
+        <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Explore top-tier education in countries that offer unique cultural and academic experiences.
+        </p>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+          className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {[
+            {
+              name: 'United States',
+              key: 'USA',
+              img: '/images/destinations/usa.jpg',
+              title: 'United States: Where opportunities thrive',
+              description:
+                'Unleash your potential at top-ranked universities, with cutting-edge resources and a dynamic environment that empowers you to achieve your dreams.',
+            },
+            {
+              name: 'South Korea',
+              key: 'South Korea',
+              img: '/images/destinations/south-korea.jpg',
+              title: 'South Korea: Innovation meets tradition',
+              description:
+                'Immerse yourself in a tech-forward society with world-class education in engineering and arts, all while experiencing a rich cultural heritage.',
+            },
+            {
+              name: 'Italy',
+              key: 'Italy',
+              img: '/images/destinations/italy.jpg',
+              title: 'Italy: A legacy of art and culture',
+              description:
+                'Study amidst timeless masterpieces. Italy offers unparalleled education in design, architecture, and humanities in the heart of history.',
+            },
+          ].map((dest) => {
+            const [isHovered, setIsHovered] = useState(false);
+
+            return (
+              <motion.div
+                key={dest.name}
+                variants={fadeInUp}
+                className="relative rounded-xl shadow-lg overflow-hidden group w-full aspect-video cursor-pointer"
+                aria-label={`Study in ${dest.name}`}
+                onHoverStart={() => setIsHovered(true)}
+                onHoverEnd={() => setIsHovered(false)}
+                onTap={() => setIsHovered(!isHovered)}
+              >
+                <img
+                  src={dest.img}
+                  alt={dest.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-6">
+                  <h3 className="text-white text-2xl font-bold">{dest.name}</h3>
                 </div>
-            </section>
+                <motion.div
+                  className="absolute inset-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm p-6 flex flex-col justify-center items-center text-center border-4 border-blue-500 dark:border-blue-400 rounded-xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: isHovered ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h4 className="text-2xl font-bold text-blue-700 dark:text-blue-400">{dest.title}</h4>
+                  <p className="mt-2 text-gray-600 dark:text-gray-300">{dest.description}</p>
+                  <Link
+                    to="/destinations"
+                    state={{ destination: dest.key }}
+                    className="mt-4 bg-blue-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300"
+                    aria-label={`Study in ${dest.name}`}
+                  >
+                    Study in {dest.name}
+                  </Link>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </section>
 
             {/* Process Section */}
             <section className="py-20 bg-white dark:bg-gray-900" aria-label="Process">
@@ -445,25 +450,78 @@ const Home: React.FC = () => {
 
             {/* Success Stories */}
             <section className="py-20 bg-brand-light dark:bg-gray-800" aria-label="Success stories">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">Success Stories</h2>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-brand-primary dark:text-gray-100">
+                        Student Success Stories
+                    </h2>
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                        Inspiring journeys from our students are on the way. Stay tuned for real stories of dreams turning into degrees.
+                        Discover how our students have transformed their academic dreams into reality at top universities worldwide.
                     </p>
+                </div>
+
+        {/* Horizontal Scroll Cards — Now Centered on Desktop */}
+        <div className="overflow-x-auto pb-6 -mx-4 px-4 scrollbar-hide">
+            <div className="flex gap-6 min-w-max mx-auto max-w-5xl">
+                {[
+                    {
+                        name: 'Priya Sharma',
+                        destination: 'University of California, USA',
+                        program: 'MS in Computer Science',
+                        quote: "IGS transformed my overwhelming dream into a confirmed admission. Their SOP editing was magic!",
+                        img: 'https://picsum.photos/id/1027/150/150'
+                    },
+                    {
+                        name: 'Jin-Woo Park',
+                        destination: 'KAIST, South Korea',
+                        program: 'B.Eng in Electrical Engineering',
+                        quote: "They helped me secure a scholarship at KAIST — I never thought it was possible!",
+                        img: 'https://picsum.photos/id/1005/150/150'
+                    },
+                    {
+                        name: 'Aisha Al-Jamil',
+                        destination: 'University of Toronto, Canada',
+                        program: 'B.Com in Finance',
+                        quote: "From visa confusion to landing in Toronto — IGS guided every step.",
+                        img: 'https://picsum.photos/id/1013/150/150'
+                    }
+                ].map((story, index) => (
                     <motion.div
+                        key={story.name}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="mt-12 bg-white dark:bg-gray-800 p-10 rounded-lg shadow-lg max-w-xl mx-auto"
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="flex-shrink-0 w-56 sm:w-64 md:w-72 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-5 md:p-6 text-center hover:shadow-xl transition-shadow duration-300"
                     >
-                        <h3 className="text-2xl font-semibold text-brand-primary dark:text-blue-400">Coming Soon</h3>
-                        <p className="mt-4 text-gray-600 dark:text-gray-300">
-                            Our students are achieving great things around the world. Their inspiring journeys will be shared here very soon!
+                        <img
+                            src={story.img}
+                            alt={story.name}
+                            className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-brand-primary dark:border-blue-400"
+                        />
+                        <h3 className="font-bold text-gray-800 dark:text-white text-sm sm:text-base md:text-lg">
+                            {story.name}
+                        </h3>
+                        <p className="text-xs sm:text-sm mt-1 line-clamp-1 text-gray-600 dark:text-gray-300">
+                            {story.destination}
                         </p>
+                        <p className="text-xs sm:text-sm italic text-gray-500 dark:text-gray-400 mt-3 line-clamp-2">
+                            "{story.quote}"
+                        </p>
+                        <a
+                            href="#/success-stories"
+                            className="mt-4 inline-block text-brand-primary dark:text-blue-400 font-medium text-xs sm:text-sm hover:underline"
+                        >
+                            Read Full Story →
+                        </a>
                     </motion.div>
-                </div>
-            </section>
+                ))}
+            </div>
+        </div>
+
+            </div>
+        </section>
             {/* Lead Magnet (Google Drive PDF Link) */}
             <section className="py-20 bg-brand-primary text-white" aria-label="Download study abroad guide">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
