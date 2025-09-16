@@ -5,25 +5,39 @@ const SuccessStories: React.FC = () => {
     // Real stories - now UNCOMMENTED and active
     const stories = [
         {
-            name: 'Priya Sharma',
-            destination: 'University of California, USA',
+            name: 'Jahir Mahmud Redoy',
+            destination: 'Hanyang University, South Korea',
             program: 'MS in Computer Science',
-            quote: "My dream of studying at a top US university felt overwhelming until I found IGFS. Their counselors meticulously planned every step, from shortlisting universities that matched my profile to preparing me for the visa interview. The editors transformed my SOP from a simple document into a compelling story. I couldn't be more grateful for their unwavering support.",
-            img: 'https://picsum.photos/id/1027/150/150'
+            quote: "My dream of studying at a top South Korea university felt overwhelming until I found IGS. Their counselors meticulously planned every step, from shortlisting universities that matched my profile to preparing me for the visa interview. I couldn't be more grateful for their unwavering support.",
+            img: '/images/ss-story/ss1.jpeg'
         },
         {
-            name: 'Jin-Woo Park',
-            destination: 'KAIST, South Korea',
+            name: 'Noor Alam',
+            destination: 'University of Milan, Italy',
             program: 'B.Eng in Electrical Engineering',
-            quote: "As a high school student, I had no idea how to navigate the Korean university application system. The IGFS team, with their deep knowledge of Korean education, was a lifesaver. They helped me highlight my strengths and secure a scholarship at my top-choice university, KAIST. They truly care about their students' success.",
-            img: 'https://picsum.photos/id/1005/150/150'
+            quote: "As a high school student, I had no idea how to navigate the Italian university application system. The IGS team, with their deep knowledge of Italian education, was a lifesaver. They helped me highlight my strengths and secure a scholarship at my top-choice university,Italy . They truly care about their students' success.",
+            img: '/images/ss-story/ss2.jpeg'
         },
         {
-            name: 'Marco Rossi',
-            destination: 'Politecnico di Milano, Italy',
+            name: 'Sarkar Alamin',
+            destination: 'Bocconi University, Italy',
             program: 'Masters in Fashion Design',
-            quote: "IGFS understood the nuances of applying to a top design school in Italy. They didn't just help with paperwork; they provided critical feedback on my portfolio, which made all the difference. Their guidance on the complex Italian visa process was clear and precise. Grazie mille, IGFS!",
-            img: 'https://picsum.photos/id/1011/150/150'
+            quote: "IGS understood the nuances of applying to a top design school in Italy. They didn't just help with paperwork; they provided critical feedback on my portfolio, which made all the difference. Their guidance on the complex Italian visa process was clear and precise. Grazie mille, IGS!",
+            img: '/images/ss-story/ss3.jpeg'
+        },
+        {
+            name: 'Mehedi Hasan Tipu',
+            destination: 'Kyungsung University, South Korea',
+            program: 'Bachelor In Mechanical Engineering (Automoblie)',
+            quote: "Pursuing my dreams in South Korea with IGS’s guidance is the first step toward becoming a leader in automotive engineering. Grateful for the opportunity to learn and grow in a global environment.",
+            img: '/images/ss-story/ss5.jpeg'
+        },
+        {
+            name: 'Ashiqur Rahman ',
+            destination: 'The City University of New York, USA',
+            program: 'Bachelors in Fashion Management',
+            quote: "IGS has opened doors to endless possibilities. With their support, I'm not only shaping my career in fashion but also immersing myself in the dynamic world of global fashion management.",
+            img: '/images/ss-story/ss4.jpeg'
         },
         // {
         //     name: 'Aisha Al-Jamil',

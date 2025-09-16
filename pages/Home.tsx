@@ -466,26 +466,33 @@ const Home: React.FC = () => {
             <div className="flex gap-6 min-w-max mx-auto max-w-5xl">
                 {[
                     {
-                        name: 'Priya Sharma',
-                        destination: 'University of California, USA',
+                        name: 'Jahir Mahmud Redoy',
+                        destination: 'Hanyang University, South Korea',
                         program: 'MS in Computer Science',
-                        quote: "IGS transformed my overwhelming dream into a confirmed admission. Their SOP editing was magic!",
-                        img: 'https://picsum.photos/id/1027/150/150'
+                        quote: "My dream of studying at a top South Korea university felt overwhelming until I found IGS. Their counselors meticulously planned every step, from shortlisting universities that matched my profile to preparing me for the visa interview. I couldn't be more grateful for their unwavering support.",
+                        img: '/images/ss-story/ss1.jpeg'
                     },
                     {
-                        name: 'Jin-Woo Park',
-                        destination: 'KAIST, South Korea',
+                        name: 'Noor Alam',
+                        destination: 'University of Milan, Italy',
                         program: 'B.Eng in Electrical Engineering',
-                        quote: "They helped me secure a scholarship at KAIST — I never thought it was possible!",
-                        img: 'https://picsum.photos/id/1005/150/150'
+                        quote: "As a high school student, I had no idea how to navigate the Italian university application system. The IGS team, with their deep knowledge of Italian education, was a lifesaver. They helped me highlight my strengths and secure a scholarship at my top-choice university,Italy . They truly care about their students' success.",
+                        img: '/images/ss-story/ss2.jpeg'
                     },
                     {
-                        name: 'Aisha Al-Jamil',
-                        destination: 'University of Toronto, Canada',
-                        program: 'B.Com in Finance',
-                        quote: "From visa confusion to landing in Toronto — IGS guided every step.",
-                        img: 'https://picsum.photos/id/1013/150/150'
-                    }
+                        name: 'Sarkar Alamin',
+                        destination: 'Bocconi University, Italy',
+                        program: 'Masters in Fashion Design',
+                        quote: "IGS understood the nuances of applying to a top design school in Italy. They didn't just help with paperwork; they provided critical feedback on my portfolio, which made all the difference. Their guidance on the complex Italian visa process was clear and precise. Grazie mille, IGS!",
+                        img: '/images/ss-story/ss3.jpeg'
+                    },
+                    {
+                        name: 'Mehedi Hasan Tipu',
+                        destination: 'Kyungsung University, South Korea',
+                        program: 'Bachelor In Mechanical Engineering (Automoblie)',
+                        quote: "Pursuing my dreams in South Korea with IGS’s guidance is the first step toward becoming a leader in automotive engineering. Grateful for the opportunity to learn and grow in a global environment.",
+                        img: '/images/ss-story/ss5.jpeg'
+                    },
                 ].map((story, index) => (
                     <motion.div
                         key={story.name}
