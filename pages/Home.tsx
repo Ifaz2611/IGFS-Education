@@ -468,14 +468,14 @@ const Home: React.FC = () => {
                     {
                         name: 'Jahir Mahmud Redoy',
                         destination: 'Hanyang University, South Korea',
-                        program: 'MS in Computer Science',
+                        program: 'Bachelor In Mechanical Engineering',
                         quote: "My dream of studying at a top South Korea university felt overwhelming until I found IGS. Their counselors meticulously planned every step, from shortlisting universities that matched my profile to preparing me for the visa interview. I couldn't be more grateful for their unwavering support.",
                         img: '/images/ss-story/ss1.jpeg'
                     },
                     {
                         name: 'Noor Alam',
                         destination: 'University of Milan, Italy',
-                        program: 'B.Eng in Electrical Engineering',
+                        program: 'Master in Artificial Intilligence',
                         quote: "As a high school student, I had no idea how to navigate the Italian university application system. The IGS team, with their deep knowledge of Italian education, was a lifesaver. They helped me highlight my strengths and secure a scholarship at my top-choice university,Italy . They truly care about their students' success.",
                         img: '/images/ss-story/ss2.jpeg'
                     },

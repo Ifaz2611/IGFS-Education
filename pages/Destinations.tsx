@@ -305,12 +305,12 @@ const SouthKoreaContent: React.FC = () => (
             <tr className="bg-white dark:bg-gray-800">
               <td className="p-4 border border-gray-300 dark:border-gray-600">Bachelor's degree (Haksa)</td>
               <td className="p-4 border border-gray-300 dark:border-gray-600">4 years</td>
-              <td className="p-4 border border-gray-300 dark:border-gray-600">$5,000 – $15,000</td>
+              <td className="p-4 border border-gray-300 dark:border-gray-600">$3,000 – $5,000</td>
             </tr>
             <tr className="bg-gray-50 dark:bg-gray-800/50">
               <td className="p-4 border border-gray-300 dark:border-gray-600">Master's degree (Suksa)</td>
               <td className="p-4 border border-gray-300 dark:border-gray-600">2 years</td>
-              <td className="p-4 border border-gray-300 dark:border-gray-600">$6,000 – $20,000</td>
+              <td className="p-4 border border-gray-300 dark:border-gray-600">$3,000 – $5,000</td>
             </tr>
             <tr className="bg-white dark:bg-gray-800">
               <td className="p-4 border border-gray-300 dark:border-gray-600">Doctorate or PhD (Baksa)</td>

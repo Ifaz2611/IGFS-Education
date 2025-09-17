@@ -7,14 +7,14 @@ const SuccessStories: React.FC = () => {
         {
             name: 'Jahir Mahmud Redoy',
             destination: 'Hanyang University, South Korea',
-            program: 'MS in Computer Science',
+            program: 'Bachelor In Mechanical Engineering',
             quote: "My dream of studying at a top South Korea university felt overwhelming until I found IGS. Their counselors meticulously planned every step, from shortlisting universities that matched my profile to preparing me for the visa interview. I couldn't be more grateful for their unwavering support.",
             img: '/images/ss-story/ss1.jpeg'
         },
         {
             name: 'Noor Alam',
             destination: 'University of Milan, Italy',
-            program: 'B.Eng in Electrical Engineering',
+            program: 'Master in Artificial Intilligence',
             quote: "As a high school student, I had no idea how to navigate the Italian university application system. The IGS team, with their deep knowledge of Italian education, was a lifesaver. They helped me highlight my strengths and secure a scholarship at my top-choice university,Italy . They truly care about their students' success.",
             img: '/images/ss-story/ss2.jpeg'
         },
@@ -35,9 +35,16 @@ const SuccessStories: React.FC = () => {
         {
             name: 'Ashiqur Rahman ',
             destination: 'The City University of New York, USA',
-            program: 'Bachelors in Fashion Management',
+            program: 'Bachelors in Computer Information System',
             quote: "IGS has opened doors to endless possibilities. With their support, I'm not only shaping my career in fashion but also immersing myself in the dynamic world of global fashion management.",
             img: '/images/ss-story/ss4.jpeg'
+        },
+        {
+            name: 'Jannatul Islam Bristy',
+            destination: 'Kansas State University, USA',
+            program: 'Bachelors in Mechanical Engineering',
+            quote: "IGS help me though out the all prosses and did everything for me. I would say their full guidance help me to get my dream university ",
+            img: '/images/ss-story/ss6.jpeg'
         },
         // {
         //     name: 'Aisha Al-Jamil',
